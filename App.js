@@ -8,6 +8,7 @@ import Welcome3 from './Screens/Welcome3';
 import Welcome4 from './Screens/Welcome4';
 import Welcome5 from './Screens/Welcome5';
 import Login from './Screens/SignIn';
+import VerifyEmail from './Screens/VerifyEmail';
 
 
 export default function App() {
@@ -19,9 +20,10 @@ export default function App() {
       {/* <Welcome2 /> */}
       {/* <Welcome3 /> */}
       {/* <Welcome4 /> */}
-      {/* <Welcome5 />*/}
+      {/* <Welcome5 /> */}
       {/* <TransferSuccess /> */}
-      <Login />
+      {/* <Login /> */}
+      <VerifyEmail />
       
 
     

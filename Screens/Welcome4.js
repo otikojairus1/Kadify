@@ -15,7 +15,7 @@ export default function Welcome4() {
     <View style={{width: windowWidth, height: windowHeight, marginTop:50, backgroundColor: light}}>
         {/* logo */}
         <View style={{height: 200, width:200, marginLeft:85, marginTop:120, borderRadius:200, backgroundColor:light, borderColor:primary}}>
-        <Feather name="lock" size={200} color={secondary} />
+        <Feather name="lock" size={200} color={primary} />
         </View>
         {/* end of logo */}
 
