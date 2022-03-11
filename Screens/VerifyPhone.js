@@ -10,7 +10,7 @@ import AnimatedCodeInput from "@brainsbeards/react-native-animated-code-input";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
-const VerifyEmail = () => {
+const VerifyPhone = () => {
     const [code, setCode] = React.useState('');
     const onChangeText = React.useCallback((text) => {
         setCode(text);
@@ -31,7 +31,7 @@ const VerifyEmail = () => {
          
 <View style={{height:100, paddingLeft:17, marginTop:100, backgroundColor:light}}>
   <Text style={{ fontSize:34, fontWeight:'bold'}}>Verify Your</Text>
-  <Text style={{ fontSize:34, fontWeight:'bold'}}> Email Account!</Text>
+  <Text style={{ fontSize:34, fontWeight:'bold'}}> Phone Number!</Text>
 </View>
 
 {/* of sign in wording */}
@@ -39,11 +39,11 @@ const VerifyEmail = () => {
 <View>
 
 <View style={{height: 100, paddingLeft:17, marginBottom:20, backgroundColor:light}}>
- <Text style={{ fontSize:16, }}> Enter the 4digit code we have sent to your email</Text>
- <Text style={{ fontSize:16, }}> address. If you can't find it make sure you double </Text>
- <Text style={{ fontSize:16, }}> check your email before retrying. We've sent the</Text>
- <Text style={{ fontSize:16, }}> code to:</Text>
- <Text style={{ fontSize:18, fontWeight:'bold', color:primary }}> jane@yahoo.com</Text>
+ <Text style={{ fontSize:16, }}> Enter the 4digit code we have sent to your Phone</Text>
+ <Text style={{ fontSize:16, }}> If you can't receive it make sure you double </Text>
+ <Text style={{ fontSize:16, }}> check your phone number before retrying. </Text>
+ <Text style={{ fontSize:16, }}> We've sent the code to:</Text>
+ <Text style={{ fontSize:18, fontWeight:'bold', color:primary }}> +254722753364 </Text>
 </View>
 
 {/* end of description */}
@@ -81,8 +81,9 @@ const VerifyEmail = () => {
     </TouchableOpacity>
     <View style={{flex:1,  marginTop: 12}}>
         <Text style={{ fontSize:12, fontWeight:'bold'}}>NOTE: The app will automatically verify your pin upon completion</Text>
-        <Text style={{ fontSize:12, fontWeight:'bold'}}>of your one time pin entry!</Text>
+        <Text style={{ fontSize:12, fontWeight:'bold'}}>of your one time pin!</Text>
     </View>
+    <View style={{width: 200, marginLeft:40, marginTop: 120, height:3, backgroundColor:primary, borderRadius:10}}></View>
 
 </View>
 
@@ -126,4 +127,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default VerifyEmail;
+export default VerifyPhone;
