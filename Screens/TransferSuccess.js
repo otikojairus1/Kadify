@@ -30,8 +30,8 @@ export default function TransferSuccess() {
 
         {/* start of description */}
 
-        <View style={{width: 350, marginTop:20, height:80}}>
-            <Text style={{ fontSize:22, color:light, textAlign:'center'}}>Dear user, your transaction was successful. You can now see its details in your receipt section</Text>
+        <View style={{width: 350, marginTop:20, paddingLeft:20, paddingRight:40, height:80}}>
+            <Text style={{ fontSize:18, color:light, textAlign:'center'}}>Dear user, your transaction was successful. You can now see its details in your receipt section</Text>
         </View> 
 
         {/* end of description */}
