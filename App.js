@@ -9,6 +9,8 @@ import Welcome4 from './Screens/Welcome4';
 import Welcome5 from './Screens/Welcome5';
 import Login from './Screens/SignIn';
 import VerifyEmail from './Screens/VerifyEmail';
+import PhoneRegister from './Screens/PhoneRegister';
+
 
 
 export default function App() {
@@ -23,7 +25,10 @@ export default function App() {
       {/* <Welcome5 /> */}
       {/* <TransferSuccess /> */}
       {/* <Login /> */}
-      <VerifyEmail />
+      {/* <VerifyEmail /> */}
+      {/* <PhoneRegistration /> */}
+      <PhoneRegister />
+      
       
 
     

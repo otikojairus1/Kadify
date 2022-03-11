@@ -61,7 +61,7 @@ const VerifyEmail = () => {
 {/* end of inputs */}
 {/* start of countdown */}
 <CountDown
-        until={60 * 10 + 30}
+        until={15 * 10 + 30}
         size={20}
         onFinish={() => ()=>console.log("completed countdown")}
         digitStyle={{backgroundColor: primary}}
