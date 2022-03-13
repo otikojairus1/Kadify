@@ -12,7 +12,7 @@ export default function Welcome() {
   return (
     <View style={{width: windowWidth, height: windowHeight, backgroundColor:light}}>
         {/* start of play bottom */}
-      <TouchableOpacity style={{height: 200, width:200, marginLeft:80, borderRadius:10, shadowColor:primary, elevation:100, justifyContent:'center', alignItems:"center", marginTop:120, backgroundColor:light}}>
+      <TouchableOpacity style={{height: 200, width:200, marginLeft:80, borderRadius:10, boxShadow:10, shadowColor:primary, elevation:100, justifyContent:'center', alignItems:"center", marginTop:120, backgroundColor:light}}>
           <View style={{height:70, width: 70, paddingLeft:5, paddingTop:4, backgroundColor:secondary, borderRadius:70}}>
           <AntDesign name="play" size={60} color={primary} />
           </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { primary,secondary, dark, light } from '../Palletes/Colours'
+import { primary,secondary, dark, light, bg } from '../Palletes/Colours'
 import { View, KeyboardAvoidingView, Dimensions, TextInput, StyleSheet, Text, Platform, TouchableWithoutFeedback, TouchableOpacity, Keyboard  } from 'react-native';
 //import PinInput from 'react-native-pin-entry'
 import CountDown from 'react-native-countdown-component';

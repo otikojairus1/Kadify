@@ -11,6 +11,7 @@ import Login from './Screens/SignIn';
 import VerifyEmail from './Screens/VerifyEmail';
 import PhoneRegister from './Screens/PhoneRegister';
 import VerifyPhone from './Screens/VerifyPhone';
+import Profile from './Screens/Profile';
 
 
 
@@ -20,16 +21,17 @@ export default function App() {
 
     
       {/* <Welcome /> */}
-      {/* <Welcome2 /> */}
-      {/* <Welcome3 /> */}
+      {/* <Welcome2 />  */}
+        {/* <Welcome3 /> */}
       {/* <Welcome4 />  */}
       {/* <Welcome5 /> */}
       {/* <TransferSuccess /> */}
       {/* <Login /> */}
       {/* <VerifyEmail /> */}
+      <Profile />
      
       {/* <PhoneRegister /> */}
-      <VerifyPhone/>
+      {/* <VerifyPhone/> */}
       
       
 

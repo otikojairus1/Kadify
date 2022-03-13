@@ -15,10 +15,10 @@ const Login = () => {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
    
-<View style={{flex:1, justifyContent:"center", marginTop:-100, backgroundColor: light}}>
+<View style={{ flex:1, justifyContent:"center", marginTop:20, backgroundColor: light}}>
 
          
-<View style={{height:100, paddingLeft:17, marginTop:100, backgroundColor:light}}>
+<View style={{height:100, paddingLeft:17, marginTop:0, backgroundColor:light}}>
   <Text style={{ fontSize:34, fontWeight:'bold'}}>Sign In</Text>
   <Text style={{ fontSize:34, fontWeight:'bold'}}>To Account</Text>
 </View>

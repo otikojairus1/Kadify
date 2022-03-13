@@ -25,7 +25,7 @@ export default function Welcome4() {
             <Text style={{fontSize: 40, fontWeight:'bold'}}>Encrypted</Text>
         </View>
         <View style={{width: 300, height: 100, paddingLeft:50, backgroundColor:light}}>
-            <Text style={{ fontSize: 22, color:'grey', textAlign:'center'}}>Our new encyption algorithm makes it more secure between you Mpesa, AirtelMoney or your bank</Text>
+            <Text style={{ fontSize: 22, color:'grey', textAlign:'center'}}>Our new encyption algorithm makes it more secure between your Mpesa, AirtelMoney or your bank</Text>
         </View>
 
         {/* end of title and description */}
