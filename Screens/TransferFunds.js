@@ -13,7 +13,7 @@ export default function TransferFunds() {
   return (
     <View style={{flex:1,justifyContent:'center', backgroundColor:bg}}>
           {/* start of appbar */}
-          <View style={{width:340}}>
+          <View style={{width:355}}>
             <Appbar />
         </View>
       {/* end of appbar */}

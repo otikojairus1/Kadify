@@ -16,6 +16,7 @@ import HomeWallet from './Screens/HomeWallet';
 import SignUp from './Screens/SignUp';
 import SendMoney from './Screens/SendMoney';
 import TransferFunds from './Screens/TransferFunds';
+import MyCards from './Screens/MyCards';
 
 
 
@@ -27,19 +28,20 @@ export default function App() {
     
       {/* <Welcome /> */}
       {/* <Welcome2 />  */}
-        {/* <Welcome3 /> */}
+     {/* <Welcome3 /> */}
       {/* <Welcome4 />  */}
       {/* <Welcome5 /> */}
       {/* <TransferSuccess /> */}
       {/* <Login /> */}
       {/* <VerifyEmail /> */}
       {/* <Profile /> */}
-      <HomeWallet/>
+      {/* <HomeWallet/> */}
       {/* <SignUp /> */}
      {/* <TransferFunds /> */}
       {/* <PhoneRegister /> */}
       {/* <VerifyPhone/> */}
       {/* <SendMoney /> */}
+      <MyCards />
       
       
 
