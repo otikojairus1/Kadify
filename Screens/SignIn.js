@@ -1,5 +1,5 @@
 import React from 'react';
-import { primary,secondary, dark, light } from '../Palletes/Colours'
+import { primary,secondary, dark, light, } from '../Palletes/Colours'
 import { View, KeyboardAvoidingView, Dimensions, TextInput, StyleSheet, Text, Platform, TouchableWithoutFeedback, TouchableOpacity, Keyboard  } from 'react-native';
 
 import { FontAwesome , AntDesign} from '@expo/vector-icons';
@@ -37,18 +37,14 @@ const Login = () => {
 
 {/* start of inputs */}
 
-<View style={{height: 150, marginTop:30,paddingLeft:17, backgroundColor: light}}>
-{/* <Input mx="3" variant='filled' placeholder="username or email" w="95%" maxWidth="300px" />
-<View style={{height:20}}></View>
-<Input mx="3" variant='filled' placeholder="password or secure passcode" w="95%" maxWidth="300px" /> */}
- <View style={{paddingLeft: 17, marginBottom:10, marginRight:32, borderWidth:1, borderColor:primary, paddingTop:10 , paddingBottom:10, backgroundColor: light, borderRadius:10, color:dark}}>
-   <TextInput  placeholder="Username or Email Address" style={{width:"100%"}}/>
- </View>
- <View style={{paddingLeft: 17, marginRight:32, paddingTop:10 , borderWidth:1, borderColor:primary, paddingBottom:10, backgroundColor: light, borderRadius:10, color:dark}}>
-   <TextInput secureTextEntry={true} placeholder="Password" style={{width:"100%"}}/>
- </View>
-
-</View>
+      <View style={{marginTop:10, paddingLeft: 17,paddingRight:17, justifyContent:'center', alignItems: 'center',height: 140}}>
+            <View style={{flex:1}}>
+            <TextInput placeholder="Email address" style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16,borderWidth:1, borderColor: '#e8e9f1',backgroundColor: '#e8e9f1'}}></TextInput>
+            </View>
+            <View style={{flex:1}}>
+            <TextInput placeholder="Password " secureTextEntry={true} style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}></TextInput>
+            </View>
+        </View>
 
 
 

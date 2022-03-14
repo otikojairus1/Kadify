@@ -12,6 +12,8 @@ import VerifyEmail from './Screens/VerifyEmail';
 import PhoneRegister from './Screens/PhoneRegister';
 import VerifyPhone from './Screens/VerifyPhone';
 import Profile from './Screens/Profile';
+import HomeWallet from './Screens/HomeWallet';
+import SignUp from './Screens/SignUp';
 
 
 
@@ -28,7 +30,9 @@ export default function App() {
       {/* <TransferSuccess /> */}
       {/* <Login /> */}
       {/* <VerifyEmail /> */}
-      <Profile />
+      {/* <Profile /> */}
+      {/* <HomeWallet/> */}
+      {/* <SignUp /> */}
      
       {/* <PhoneRegister /> */}
       {/* <VerifyPhone/> */}

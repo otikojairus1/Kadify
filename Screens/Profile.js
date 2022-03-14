@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity,KeyboardAvoidingView, TouchableWithoutFeed
 import React from 'react'
 import { light, primary, secondary, dark } from '../Palletes/Colours'
 import { FontAwesome,MaterialCommunityIcons } from '@expo/vector-icons';
+import Appbar from '../Components/Appbar';
 
 let bg = "#E8E9F1";
 export default function Profile() {
@@ -13,16 +14,7 @@ export default function Profile() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <View style={{ marginTop:-50, backgroundColor:bg, flex:1, justifyContent:'center', }}>
         {/* start of appbar */}
-      <View style={{height:50, flexDirection:'row', marginLeft:10, marginRight:10, justifyContent:'space-between',}}>
-          <TouchableOpacity style={{height:40, width:40, justifyContent:'center', alignItems:'center',}}> 
-          <FontAwesome name="align-center" size={30} color={primary} />
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{height:40, width:40, justifyContent:'center', alignItems:'center',}}> 
-          <MaterialCommunityIcons name="shape-square-plus" size={30} color={primary} />
-          </TouchableOpacity>
-         
-      </View>
+        <Appbar/>
       {/* end of appbar */}
       {/* start of profile text */}
      
@@ -71,18 +63,18 @@ export default function Profile() {
             <View style={{flex:1,}}>
                 <Text style={{ fontSize:18, fontWeight:'bold', color:dark}}>Name</Text>
               
-                    <TextInput placeholder={"Janet Mbugua"} style={{width:320, paddingLeft:20, height:44, borderRadius:10, borderWidth:2, backgroundColor:light, borderColor:primary,}}/>
+                    <TextInput placeholder={"Janet Mbugua"} style={{width:320, paddingLeft:20, height:44, borderRadius:10, backgroundColor:light, borderColor:primary,}}/>
                
             </View>
             <View style={{flex:1,}}>
                 <Text style={{ fontSize:18, fontWeight:'bold', color:dark}}>Date of Birth</Text>
               
-                    <TextInput placeholder={"12th Feb 1998"} style={{width:320, paddingLeft:20, height:44, borderRadius:10, borderWidth:2, backgroundColor:"white", borderColor:primary,}}/>
+                    <TextInput placeholder={"12th Feb 1998"} style={{width:320, paddingLeft:20, height:44, borderRadius:10, backgroundColor:"white", borderColor:primary,}}/>
                
             </View>
             <View style={{flex:1,}}>
                 <Text style={{ fontSize:18, fontWeight:'bold', color:dark}}>Password</Text>
-                    <TextInput placeholder={"secret passcode..."} style={{width:320, paddingLeft:20, height:44, borderRadius:10, borderWidth:2, backgroundColor:light, borderColor:primary,}}/>
+                    <TextInput placeholder={"secret passcode..."} style={{width:320, paddingLeft:20, height:44, borderRadius:10,  backgroundColor:light, borderColor:primary,}}/>
                
             </View>
           

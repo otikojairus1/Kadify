@@ -23,8 +23,8 @@ export default function Welcome2() {
         <View style={{width: windowWidth, height: 90, marginTop:20, alignItems:'center', justifyContent:'center', backgroundColor:light}}>
             <Text style={{fontSize: 40, fontWeight:'bold'}}>Fast and Secure</Text>
         </View>
-        <View style={{width: windowWidth, height: 90, backgroundColor:light}}>
-            <Text style={{ fontSize: 30, color:'grey', textAlign:'center'}}>Dont worry about 3rd party hacks. It is fast and secure</Text>
+        <View style={{width: 320, height: 90, marginLeft:20, marginRight:20, backgroundColor:light}}>
+            <Text style={{ fontSize: 20, color:'grey', textAlign:'center'}}>Dont worry about 3rd party hacks. It is fast and secure</Text>
         </View>
 
         {/* end of title and description */}
