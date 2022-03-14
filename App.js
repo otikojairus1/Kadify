@@ -14,6 +14,7 @@ import VerifyPhone from './Screens/VerifyPhone';
 import Profile from './Screens/Profile';
 import HomeWallet from './Screens/HomeWallet';
 import SignUp from './Screens/SignUp';
+import SendMoney from './Screens/SendMoney';
 
 
 
@@ -36,6 +37,7 @@ export default function App() {
      
       {/* <PhoneRegister /> */}
       {/* <VerifyPhone/> */}
+      <SendMoney />
       
       
 
