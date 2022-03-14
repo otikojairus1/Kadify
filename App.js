@@ -34,9 +34,9 @@ export default function App() {
       {/* <Login /> */}
       {/* <VerifyEmail /> */}
       {/* <Profile /> */}
-      {/* <HomeWallet/> */}
+      <HomeWallet/>
       {/* <SignUp /> */}
-     <TransferFunds />
+     {/* <TransferFunds /> */}
       {/* <PhoneRegister /> */}
       {/* <VerifyPhone/> */}
       {/* <SendMoney /> */}
