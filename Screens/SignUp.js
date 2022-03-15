@@ -16,7 +16,7 @@ export default function SignUp() {
         
         {/* Start of wel come */}
         <View style={{marginTop:40, justifyContent: 'center', alignItems: 'center'}}>
-            <Text style={{fontSize: 45, fontWeight: 'bold', color:primary}}>Kardify</Text>
+            <Text style={{fontSize: 45, fontWeight: 'bold', color:primary}}>Kadify</Text>
             <Text style={{fontSize: 20, fontWeight: 'bold', color:dark, marginTop:20}}>Please provide the following </Text>
             <Text style={{fontSize: 20, fontWeight: 'bold', color:dark, marginTop:1}}>details for your new account</Text>
         </View>
@@ -66,7 +66,7 @@ export default function SignUp() {
             </TouchableOpacity>
             <TouchableOpacity style={{flex:1, flexDirection: 'row',height: 90, width: 320, justifyContent: 'center', alignItems: 'center',borderRadius: 10, marginTop: 10,backgroundColor: dark}}>
             <AntDesign name="creditcard" size={25} color="white" />
-                <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold', paddingLeft:10}}>Sign up with Kardify ID</Text>
+                <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold', paddingLeft:10}}>Sign up with Kadify ID</Text>
             </TouchableOpacity>
             <View style={{flex:1, flexDirection: 'row',height: 90, width: 320, justifyContent: 'center', alignItems: 'center'}}>
                 <Text style={{fontSize: 15, fontWeight: 'bold'}}>Already have an account?</Text>

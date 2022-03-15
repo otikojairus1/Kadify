@@ -3,11 +3,11 @@ import React from 'react'
 import { primary, light } from '../Palletes/Colours';
 
 
-export default function SecondaryButton({title}) {
+export default function SecondaryButton({title, onPress}) {
   return (
    
 
-     <TouchableOpacity style={{width: 300, height: 60, justifyContent:'center', shadowColor:primary, alignItems:"center", elevation:10, borderRadius:15, marginTop:10, backgroundColor:light, marginLeft:25}}>
+     <TouchableOpacity onPress={onPress} style={{width: 300, height: 60, justifyContent:'center', shadowColor:primary, alignItems:"center", elevation:10, borderRadius:15, marginTop:10, backgroundColor:light, marginLeft:25}}>
      <Text style={{ fontSize: 25, color: primary, }}>{title}</Text>
 </TouchableOpacity>
 

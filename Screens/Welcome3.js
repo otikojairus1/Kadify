@@ -7,7 +7,7 @@ import SecondaryButton from '../Components/SecondaryButton';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
-export default function Welcome3() {
+export default function Welcome3({navigation}) {
   return (
     <View style={{ height: windowHeight, width:windowHeight, backgroundColor:primary, marginTop:40}}>
         {/* logo */}
@@ -32,7 +32,7 @@ export default function Welcome3() {
         {/* button */}
         <View style={{height:50}}></View>
 
-        <SecondaryButton title = {"Lets get started"}/>
+        <SecondaryButton onPress={()=>{navigation.navigate('Welcome')}} title = {"Lets get started"}/>
         <View style={{height:3, borderRadius:3, marginLeft:100, marginTop:90, width:150, backgroundColor:light}}></View>
     </View>
   )

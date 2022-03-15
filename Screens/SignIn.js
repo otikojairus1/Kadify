@@ -1,13 +1,39 @@
 import React from 'react';
 import { primary,secondary, dark, light, } from '../Palletes/Colours'
 import { View, KeyboardAvoidingView, Dimensions, TextInput, StyleSheet, Text, Platform, TouchableWithoutFeedback, TouchableOpacity, Keyboard  } from 'react-native';
-
+import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome , AntDesign} from '@expo/vector-icons';
+import { 
+  hasHardwareAsync,
+  isEnrolledAsync,
+  LocalAuthenticationOptions,
+  authenticateAsync 
+} from 'expo-local-authentication';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
-const Login = () => {
+const Login = ({navigation}) => {
+
+
+ const biometricsAuth = async () => {
+     
+     const compatible = await hasHardwareAsync()
+     if (!compatible) throw 'This device is not compatible for biometric authentication'
+     const enrolled = await isEnrolledAsync()
+     if (!enrolled) throw 'This device doesnt have biometric authentication enabled'
+     const result = await authenticateAsync()
+     console.log(result);
+     if (!result.success) throw `${result.error} - Authentication unsuccessful`
+
+     if(result){
+       navigation.navigate('HomeWallet');
+     }
+     return result
+ }
+
+
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -52,7 +78,7 @@ const Login = () => {
 {/* start of buttons */}
 
 <View style={{height: 180, backgroundColor: light}}>
-    <TouchableOpacity style={{width:"87%", height: 50, display:'flex', flexDirection:'row', marginTop:20, marginLeft: 17, borderRadius:10, justifyContent:'center', alignItems:'center', backgroundColor: primary}}>
+    <TouchableOpacity onPress={()=>{ navigation.navigate('HomeWallet')}} style={{width:"87%", height: 50, display:'flex', flexDirection:'row', marginTop:20, marginLeft: 17, borderRadius:10, justifyContent:'center', alignItems:'center', backgroundColor: primary}}>
     <AntDesign name="login" size={24} color="#fff" />
         <Text style={{ fontSize:20, marginLeft:10, color:light, fontWeight:'bold'}}>Sign in</Text>
     </TouchableOpacity>
@@ -72,8 +98,15 @@ const Login = () => {
 
 
 </View>
+<TouchableOpacity onPress={biometricsAuth} style={{position:"absolute", left:140, top:650}}>
+<Ionicons name="ios-finger-print-outline" size={74} color={primary} />
+</TouchableOpacity>
+
+
+
 
 </View>
+
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );

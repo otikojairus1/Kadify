@@ -11,7 +11,7 @@ import { Feather } from '@expo/vector-icons';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
-export default function Welcome5() {
+export default function Welcome5({navigation}) {
   return (
     <View style={{width: windowWidth, height: windowHeight, marginTop:50, backgroundColor: light}}>
         {/* logo */}
@@ -33,7 +33,7 @@ export default function Welcome5() {
              {/* start button */}
 
     
- <PrimaryButton title={'Next'}/>
+ <PrimaryButton onPress={()=>{navigation.navigate('sign up')}} title={'Next'}/>
     {/* end of button */}
     <View style={{height:3, borderRadius:3, marginLeft:100, marginTop:57, width:150, backgroundColor:primary}}></View>
 

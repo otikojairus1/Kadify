@@ -8,7 +8,7 @@ import PrimaryButton from '../Components/PrimaryButton';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
-export default function Welcome() {
+export default function Welcome({navigation}) {
   return (
     <View style={{width: windowWidth, height: windowHeight, backgroundColor:light}}>
         {/* start of play bottom */}
@@ -33,12 +33,16 @@ export default function Welcome() {
           <Text style={{fontSize: 25, textAlign:"center", color:"grey"}}> If you are new on this and need help, watch this short tutorial clip to get started</Text>
       </View>
       {/* end of description */}
+      
 
- <PrimaryButton title={'Lets Create An Account'}/>
+          <TouchableOpacity onPress={()=>{navigation.navigate("Welcome2")}} style={{width: 300, height: 60, justifyContent:'center', alignItems:"center", elevation:10, borderRadius:15, marginTop:50, backgroundColor:primary, marginLeft:25}}>
+              <Text style={{ fontSize: 25, color: light, }}>Create an Account</Text>
+          </TouchableOpacity>
 
+     
     {/* forgot password */}
 
-    <TouchableOpacity style={{width: 350, paddingTop:30, paddingBottom:20, height: 90, justifyContent:'center', alignItems:'center'}}>
+    <TouchableOpacity onPress={()=>{navigation.navigate("sign in")}} style={{width: 350, paddingTop:30, paddingBottom:20, height: 90, justifyContent:'center', alignItems:'center'}}>
         <Text style={{fontSize: 17, color:"grey"}}>Aleady have an account? sign in</Text>
     </TouchableOpacity>
 

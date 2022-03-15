@@ -3,17 +3,17 @@ import React from 'react'
 import Appbar from '../Components/Appbar'
 import { bg, light, primary , dark,secondary} from '../Palletes/Colours'
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { AntDesign,Fontisto,MaterialCommunityIcons,Octicons,SimpleLineIcons } from '@expo/vector-icons';
+import { AntDesign,Fontisto,MaterialCommunityIcons, MaterialIcons, Octicons,SimpleLineIcons } from '@expo/vector-icons';
 
 
-export default function HomeWallet() {
+export default function HomeWallet({navigation}) {
     const [value, setValue] = React.useState(0);
 
     const renderChild = () => {
         <Text style={{}}>sdss</Text>
     }
   return (
-    <View style={{marginTop:40, flex:1, justifyContent:'center', backgroundColor:bg}}>
+    <View style={{paddingTop:75, flex:1, justifyContent:'center', backgroundColor:bg}}>
       <Appbar />
       {/* start of hello dislplay */}
 
@@ -76,7 +76,7 @@ export default function HomeWallet() {
             </View>
                
                 <AnimatedCircularProgress
-                    size={80}
+                    size={70}
                     width={6}
                     fill={30}
                     children={renderChild}
@@ -107,9 +107,9 @@ export default function HomeWallet() {
     {/* start of buttons */}
 
     <View style={{height:100, flexDirection:'row', marginLeft:17, marginRight:17, backgroundColor:bg}}>
-        <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center',  borderRadius:10, elevation:7, backgroundColor:light}}>
+        <TouchableOpacity onPress={()=>{navigation.navigate('transfer')}} style={{flex:1, justifyContent:'center', alignItems:'center',  borderRadius:10, elevation:7, backgroundColor:light}}>
             <AntDesign name="shrink" size={30} color={primary} />
-            <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>Transfer</Text>
+            <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>Transact</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center', marginLeft:10, borderRadius:10, elevation:7, backgroundColor:light}}>
         <Fontisto name="wallet" size={30} color={primary} />
@@ -130,9 +130,9 @@ export default function HomeWallet() {
     {/* start of buttons */}
 
     <View style={{height:100, marginTop:10, flexDirection:'row', marginLeft:17, marginRight:17, backgroundColor:bg}}>
-        <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center',  borderRadius:10, elevation:7, backgroundColor:light}}>
-        <Fontisto name="credit-card" size={24} color={primary} />
-            <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>My Cards</Text>
+        <TouchableOpacity onPress={()=>{navigation.navigate('Help')}} style={{flex:1, justifyContent:'center', alignItems:'center',  borderRadius:10, elevation:7, backgroundColor:light}}>
+        <MaterialIcons name="support-agent" size={35} color={primary} />
+            <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>Support</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center', marginLeft:10, borderRadius:10, elevation:7, backgroundColor:light}}>
         <Octicons name="graph" size={30} color={primary}/>

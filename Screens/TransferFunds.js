@@ -6,12 +6,12 @@ import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import { ScrollView } from 'native-base';
+import { Avatar, ScrollView } from 'native-base';
 
 
 export default function TransferFunds() {
   return (
-    <View style={{flex:1,justifyContent:'center', backgroundColor:bg}}>
+    <View style={{flex:1, paddingTop:17, justifyContent:'center', backgroundColor:bg}}>
           {/* start of appbar */}
           <View style={{width:355}}>
             <Appbar />
@@ -58,7 +58,70 @@ export default function TransferFunds() {
                 <Text style={{fontSize: 20, fontWeight: 'bold',color:dark}}>Recent Receipts</Text>
             </View>
             <View style={{flex:2, paddingLeft:17, justifyContent:'center',alignItems:'flex-start', paddingRight:17, flexDirection:'row'}}>
-                <TouchableOpacity style={{height: 60, width: 60, borderRadius:60, backgroundColor:primary}}>
+                <ScrollView horizontal={true} style={{height:"100%"}}>
+
+                    {/* start of avatar */}
+                    <Avatar.Group size="lg" max={5}>
+        <Avatar bg="green.500" source={{
+        uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+      }}>
+          AJ
+        </Avatar>
+        <Avatar bg="cyan.500" source={{
+        uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      }}>
+          TE
+        </Avatar>
+        <Avatar bg="indigo.500" source={{
+        uri: "https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+      }}>
+          JB
+        </Avatar>
+        <Avatar bg="amber.500" source={{
+        uri: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      }}>
+          TS
+        </Avatar>
+        <Avatar bg="green.500" source={{
+        uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+      }}>
+          AJ
+        </Avatar>
+        <Avatar bg="cyan.500" source={{
+        uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      }}>
+          TE
+        </Avatar>
+        <Avatar bg="indigo.500" source={{
+        uri: "https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+      }}>
+          JB
+        </Avatar>
+        <Avatar bg="amber.500" source={{
+        uri: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      }}>
+          TS
+        </Avatar>
+        <Avatar bg="amber.500" source={{
+        uri: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      }}>
+          TS
+        </Avatar>
+        <Avatar bg="amber.500" source={{
+        uri: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      }}>
+          TS
+        </Avatar>
+        <Avatar bg="amber.500" source={{
+        uri: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      }}>
+          TS
+        </Avatar>
+      </Avatar.Group>
+
+
+                    {/* end of avatar */}
+                {/* <TouchableOpacity style={{height: 60, width: 60, borderRadius:60, backgroundColor:primary}}>
                     <Image source={require('../assets/dp.jpg')} style={{ height:"100%", width:"100%", borderRadius:130}}/>
                     <Text style={{fontWeight: "bold", color:'grey'}}> Marion</Text>
                 </TouchableOpacity>
@@ -74,7 +137,11 @@ export default function TransferFunds() {
                     <Image source={require('../assets/dp4.jpg')} style={{ height:"100%", width:"100%", borderRadius:130}}/>
                     <Text style={{fontWeight: "bold", color:'grey'}}> Denno</Text>
                 </TouchableOpacity>
-               
+                <TouchableOpacity style={{height: 60, width: 60, marginLeft:10, borderRadius:60, backgroundColor:primary}}>
+                    <Image source={require('../assets/dp4.jpg')} style={{ height:"100%", width:"100%", borderRadius:130}}/>
+                    <Text style={{fontWeight: "bold", color:'grey'}}> Denno</Text>
+                </TouchableOpacity> */}
+                </ScrollView>
                 
             </View>
         </View>
@@ -84,7 +151,7 @@ export default function TransferFunds() {
         {/* end of peope */}
         {/* start of contacts */}
 
-        <View style={{height:270, borderRadius:12, elevation:7, width:330, marginLeft:17, marginRight:17, backgroundColor:light, marginTop:10}}>
+        <View style={{height:320, borderRadius:12, elevation:7, width:330, marginLeft:17, marginRight:17, backgroundColor:light, marginTop:10}}>
         <Text style={{ fontWeight: "bold", fontSize:20, marginLeft:20, marginTop:10}}>Add New Contacts</Text>
         <View style={{width:300, flexDirection:'row', height: 50, paddingLeft: 20,marginLeft:10, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}>
             <TextInput style={{width:"100%"}} placeholder="Search friends and family" />
@@ -96,7 +163,7 @@ export default function TransferFunds() {
 {/* start of list */}
       <ScrollView>
       <View style={{flex:1, marginBottom:10, flexDirection:'row'}} >
-            <TouchableOpacity style={{height: 65, width:65, borderRadius:65,marginLeft:15, justifyContent:'center', marginTop:10, backgroundColor:primary}}>
+            <TouchableOpacity style={{height: 45, width:65, borderRadius:65,marginLeft:15, justifyContent:'center', marginTop:10, backgroundColor:primary}}>
                 
                 <Image source={require('../assets/dp.jpg')} style={{ height:"100%", width:"100%", borderRadius:130}}/>
                 

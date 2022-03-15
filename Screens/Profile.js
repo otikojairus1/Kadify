@@ -12,7 +12,7 @@ export default function Profile() {
      style={{flex:1, }}
   >
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <View style={{ marginTop:-50, backgroundColor:bg, flex:1, justifyContent:'center', }}>
+    <View style={{ marginTop:0, backgroundColor:bg, flex:1, justifyContent:'center', }}>
         {/* start of appbar */}
         <Appbar/>
       {/* end of appbar */}

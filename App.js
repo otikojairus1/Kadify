@@ -1,6 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NativeBaseProvider, Box } from "native-base";
+
+// navigation
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+
+// start of screen importation
 import TransferSuccess from './Screens/TransferSuccess';
 import Welcome from './Screens/Welcome';
 import Welcome2 from './Screens/Welcome2';
@@ -17,35 +25,33 @@ import SignUp from './Screens/SignUp';
 import SendMoney from './Screens/SendMoney';
 import TransferFunds from './Screens/TransferFunds';
 import MyCards from './Screens/MyCards';
+import CardLoading from './Screens/CardLoading';
+import BottomTabs from './Screens/BottomTabs/BottomTab';
+import Help from './Screens/Helpline';
 
 
 
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NativeBaseProvider>
-
-    
-      {/* <Welcome /> */}
-      {/* <Welcome2 />  */}
-     {/* <Welcome3 /> */}
-      {/* <Welcome4 />  */}
-      {/* <Welcome5 /> */}
-      {/* <TransferSuccess /> */}
-      {/* <Login /> */}
-      {/* <VerifyEmail /> */}
-      {/* <Profile /> */}
-      {/* <HomeWallet/> */}
-      {/* <SignUp /> */}
-     {/* <TransferFunds /> */}
-      {/* <PhoneRegister /> */}
-      {/* <VerifyPhone/> */}
-      {/* <SendMoney /> */}
-      <MyCards />
-      
-      
-
-    
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Welcome3" >
+              <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false, headerTitleAlign: "center" }}/>
+              <Stack.Screen name="sign up" component={SignUp} options={{ headerShown: false, headerTitleAlign: "center" }}/>
+              <Stack.Screen name="Welcome2" component={Welcome2} options={{ headerShown: false, headerTitleAlign: "center" }}/>
+              <Stack.Screen name="Welcome3" component={Welcome3} options={{ headerShown: false, headerTitleAlign: "center" }}/>
+              <Stack.Screen name="Welcome5" component={Welcome5} options={{ headerShown: false, headerTitleAlign: "center" }}/>
+              <Stack.Screen name="Welcome4" component={Welcome4} options={{ headerShown: false, headerTitleAlign: "center" }}/>     
+              <Stack.Screen name="sign in" component={Login} options={{ headerShown: false, headerTitleAlign: "center" }}/>   
+              <Stack.Screen name="HomeWallet" component={BottomTabs} options={{ headerShown: false, headerTitleAlign: "center" }}/>    
+              <Stack.Screen name="MyCard" component={MyCards} options={{ headerShown: false, headerTitleAlign: "center" }}/>   
+              <Stack.Screen name="transfer" component={TransferFunds} options={{ headerShown: false, headerTitleAlign: "center" }}/> 
+              <Stack.Screen name="Help" component={Help} options={{ headerShown: false, headerTitleAlign: "center" }}/>    
+            </Stack.Navigator>
+        </NavigationContainer>
     </NativeBaseProvider>
 
   );
