@@ -28,7 +28,10 @@ import MyCards from './Screens/MyCards';
 import CardLoading from './Screens/CardLoading';
 import BottomTabs from './Screens/BottomTabs/BottomTab';
 import Help from './Screens/Helpline';
-
+import Settings from './Screens/AppSettings';
+import SetUpBiometrics from './Screens/SetUpBiometric';
+import Budget from './Screens/Budget';
+import LoadingScreen1 from './Components/LoadingScreen1';
 
 
 
@@ -49,8 +52,17 @@ export default function App() {
               <Stack.Screen name="HomeWallet" component={BottomTabs} options={{ headerShown: false, headerTitleAlign: "center" }}/>    
               <Stack.Screen name="MyCard" component={MyCards} options={{ headerShown: false, headerTitleAlign: "center" }}/>   
               <Stack.Screen name="transfer" component={TransferFunds} options={{ headerShown: false, headerTitleAlign: "center" }}/> 
-              <Stack.Screen name="Help" component={Help} options={{ headerShown: false, headerTitleAlign: "center" }}/>    
+              <Stack.Screen name="Help" component={Help} options={{ headerShown: false, headerTitleAlign: "center" }}/> 
+              <Stack.Screen name="App Settings" component={Settings} options={{ headerShown: false, headerTitleAlign: "center" }}/>   
+              <Stack.Screen name="Enable Biometrics" component={SetUpBiometrics} options={{ headerShown: false, headerTitleAlign: "center" }}/>  
+              <Stack.Screen name="Verify Email" component={VerifyEmail} options={{ headerShown: false, headerTitleAlign: "center" }}/>   
+              <Stack.Screen name="Register Phone" component={PhoneRegister} options={{ headerShown: false, headerTitleAlign: "center" }}/>  
+              <Stack.Screen name="Verify Phone" component={VerifyPhone} options={{ headerShown: false, headerTitleAlign: "center" }}/>
+              <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false, headerTitleAlign: "center" }}/>
+              <Stack.Screen name="Loading1" component={LoadingScreen1} options={{ headerShown: false, headerTitleAlign: "center" }}/>
+              
             </Stack.Navigator>
+            
         </NavigationContainer>
     </NativeBaseProvider>
 

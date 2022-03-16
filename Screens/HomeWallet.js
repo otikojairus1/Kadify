@@ -1,17 +1,48 @@
 import { View, Text,Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Appbar from '../Components/Appbar'
 import { bg, light, primary , dark,secondary} from '../Palletes/Colours'
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { AntDesign,Fontisto,MaterialCommunityIcons, MaterialIcons, Octicons,SimpleLineIcons } from '@expo/vector-icons';
+import LoadingScreen1 from '../Components/LoadingScreen1';
 
 
 export default function HomeWallet({navigation}) {
-    const [value, setValue] = React.useState(0);
+
+    // component did mount here
+
+    useEffect(()=>{
+        setTimeout(() => {
+            setLoading(false);
+            
+         }, 3000);
+    });
+
+
+    // end of compoennt did mount
+
+
+
+    const [loading, setLoading] = React.useState(true);
 
     const renderChild = () => {
         <Text style={{}}>sdss</Text>
     }
+
+if(loading){
+
+    return(
+        
+        
+        <LoadingScreen1 />
+        
+    ); 
+
+}else{
+
+
+
+
   return (
     <View style={{paddingTop:75, flex:1, justifyContent:'center', backgroundColor:bg}}>
       <Appbar />
@@ -108,7 +139,7 @@ export default function HomeWallet({navigation}) {
 
     <View style={{height:100, flexDirection:'row', marginLeft:17, marginRight:17, backgroundColor:bg}}>
         <TouchableOpacity onPress={()=>{navigation.navigate('transfer')}} style={{flex:1, justifyContent:'center', alignItems:'center',  borderRadius:10, elevation:7, backgroundColor:light}}>
-            <AntDesign name="shrink" size={30} color={primary} />
+        <Image source={require('../assets/transact.gif')} style={{ height:40, width:40,}}/>
             <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>Transact</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center', marginLeft:10, borderRadius:10, elevation:7, backgroundColor:light}}>
@@ -131,15 +162,15 @@ export default function HomeWallet({navigation}) {
 
     <View style={{height:100, marginTop:10, flexDirection:'row', marginLeft:17, marginRight:17, backgroundColor:bg}}>
         <TouchableOpacity onPress={()=>{navigation.navigate('Help')}} style={{flex:1, justifyContent:'center', alignItems:'center',  borderRadius:10, elevation:7, backgroundColor:light}}>
-        <MaterialIcons name="support-agent" size={35} color={primary} />
+        <Image source={require('../assets/chat.gif')} style={{ height:40, width:40,}}/>
             <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>Support</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center', marginLeft:10, borderRadius:10, elevation:7, backgroundColor:light}}>
-        <Octicons name="graph" size={30} color={primary}/>
+        <Image source={require('../assets/analytics.gif')} style={{ height:40, width:40,}}/>
             <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>Analytics</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center', marginLeft:10, borderRadius:10, elevation:7, backgroundColor:light}}>
-        <SimpleLineIcons name="graph" size={30} color={primary} />
+        <TouchableOpacity  onPress={()=>{navigation.navigate('Budget')}} style={{flex:1, justifyContent:'center', alignItems:'center', marginLeft:10, borderRadius:10, elevation:7, backgroundColor:light}}>
+        <Image source={require('../assets/budget.gif')} style={{ height:40, width:40,}}/>
             <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>Budget</Text>
         </TouchableOpacity>
        
@@ -167,4 +198,5 @@ export default function HomeWallet({navigation}) {
     {/* end of completed tasks */}
     </View>
   )
+}
 }

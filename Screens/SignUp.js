@@ -2,9 +2,10 @@ import { View, Text, TextInput, KeyboardAvoidingView,StyleSheet, TouchableWithou
 import React from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { dark, primary } from '../Palletes/Colours';
+import { NavigationContainer } from '@react-navigation/native';
 // import CheckBox from '@react-native-community/checkbox'
 
-export default function SignUp() {
+export default function SignUp({navigation}) {
     const [isSelected, setSelection] = React.useState(false);
   return (
     <KeyboardAvoidingView
@@ -61,7 +62,7 @@ export default function SignUp() {
 
         {/* Buttons section start */}
         <View style={{marginTop: 30, height: 175, marginRight:17, justifyContent: 'center', alignItems: 'center',marginLeft: 17}}>
-            <TouchableOpacity style={{flex:1, height: 90, width: 320, justifyContent: 'center', alignItems: 'center',borderRadius: 10,backgroundColor: '#4f62c0'}}>
+            <TouchableOpacity onPress={()=>{navigation.navigate('Verify Email')}} style={{flex:1, height: 90, width: 320, justifyContent: 'center', alignItems: 'center',borderRadius: 10,backgroundColor: '#4f62c0'}}>
                 <Text style={{fontSize:25, color: 'white'}}>Sign up my account</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{flex:1, flexDirection: 'row',height: 90, width: 320, justifyContent: 'center', alignItems: 'center',borderRadius: 10, marginTop: 10,backgroundColor: dark}}>

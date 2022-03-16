@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import PhoneInput from "react-native-phone-input";
-import { light, dark, secondary, primary } from "../Palletes/Colours";
+import { light, dark, secondary, primary, bg } from "../Palletes/Colours";
 
 export default class PhoneRegister extends Component {
+  
   constructor() {
     super();
 
@@ -58,7 +59,7 @@ export default class PhoneRegister extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <View style={{height:100, paddingLeft:0, width:300, marginTop:100, backgroundColor:light}}>
+          <View style={{height:100, paddingLeft:0, width:300, marginTop:100, backgroundColor:"EDF8F9"}}>
             <Text style={{ fontSize:34, fontWeight:'bold'}}>Phone</Text>
             <Text style={{ fontSize:34, fontWeight:'bold'}}> Registration</Text>
         </View>
@@ -87,7 +88,7 @@ export default class PhoneRegister extends Component {
 
        
 
-        <TouchableOpacity style={{height: 50, elevation:10,  borderRadius:10, width: 300, justifyContent:'center', alignItems:'center', backgroundColor:primary, marginTop: 30}}>
+        <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Verify Phone')}} style={{height: 50, elevation:10,  borderRadius:10, width: 300, justifyContent:'center', alignItems:'center', backgroundColor:primary, marginTop: 30}}>
             <Text style={{ fontSize:20, color:light}}>Register Phone Number</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{marginTop:25}}>

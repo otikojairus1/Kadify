@@ -8,6 +8,7 @@ import { primary } from '../../Palletes/Colours';
 import HomeWallet from '../HomeWallet';
 import Profile from '../Profile';
 import MyCards from '../MyCards';
+import Settings from '../AppSettings';
 
 
 const Tab = createBottomTabNavigator();
@@ -25,7 +26,7 @@ export default function BottomTabs({navigation}) {
       }}
     >
       <Tab.Screen
-        name="HomeWallet"
+        name="Home"
         //component={TabOne}
         children={()=><HomeWallet navigation={navigation}/>}
 
@@ -53,7 +54,7 @@ export default function BottomTabs({navigation}) {
 <Tab.Screen
         name="pay"
         //component={TabOne}
-        children={()=><Profile navigation={navigation}/>}
+        children={()=><Settings navigation={navigation}/>}
 
         options={{
           tabBarLabel: 'Settings',

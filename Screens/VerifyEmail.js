@@ -10,7 +10,7 @@ import AnimatedCodeInput from "@brainsbeards/react-native-animated-code-input";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
-const VerifyEmail = () => {
+const VerifyEmail = ({navigation}) => {
     const [code, setCode] = React.useState('');
     const onChangeText = React.useCallback((text) => {
         setCode(text);
@@ -75,7 +75,7 @@ const VerifyEmail = () => {
 
 <View style={{height: 180, backgroundColor: light, paddingLeft:40, paddingTop:30}}>
     <Text style={{ fontSize:16, fontWeight:'bold', color:primary }}>The code will expire upon completion of the countdown!</Text>
-    <TouchableOpacity style={{marginTop:12}}>
+    <TouchableOpacity onPress={()=>{navigation.navigate('Register Phone')}} style={{marginTop:12}}>
         <Text style={{ fontSize:16, color:primary }}>Did'nt get the code? Resend Here!</Text>
 
     </TouchableOpacity>

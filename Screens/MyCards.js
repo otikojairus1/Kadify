@@ -90,7 +90,7 @@ const cancelRef = React.useRef(null);
         </View>
 
         <View style={{position:'absolute', top:140, left:260}}>
-        <FontAwesome name="cc-mastercard" size={44} color={light} />
+        <Image source={require('../assets/mastercard.png')} style={{ height:50, width:60,}}/>
         </View>
         
 
@@ -126,7 +126,8 @@ const cancelRef = React.useRef(null);
         </View>
 
         <View style={{position:'absolute', top:140, left:260}}>
-        <FontAwesome name="cc-mastercard" size={44} color={primary} />
+        <Image source={require('../assets/mastercard.png')} style={{ height:50, width:60,}}/>
+        {/* <FontAwesome name="cc-mastercard" size={44} color={primary} /> */}
         </View>
         
 

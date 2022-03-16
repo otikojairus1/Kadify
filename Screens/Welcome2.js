@@ -1,5 +1,5 @@
 
-import { View, Text, Dimensions, TouchableOpacity} from 'react-native'
+import { View, Text, Dimensions, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
 import { light, primary, secondary } from '../Palletes/Colours';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -13,8 +13,8 @@ export default function Welcome2({navigation}) {
   return (
     <View style={{width: windowWidth, height: windowHeight, marginTop:50, backgroundColor: light}}>
         {/* logo */}
-        <View style={{height: 200, width:200, marginLeft:85, marginTop:120, borderRadius:200, backgroundColor:light, borderColor:primary}}>
-        <MaterialCommunityIcons name="shield-check-outline" size={200} color={primary} />
+        <View style={{height: 200, width:200, marginLeft:100, marginTop:120, borderRadius:200, backgroundColor:light, borderColor:primary}}>
+        <Image source={require('../assets/secure.gif')} style={{ height:170, width:170,}}/>
         </View>
         {/* end of logo */}
 
