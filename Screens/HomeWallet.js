@@ -165,7 +165,7 @@ if(loading){
         <Image source={require('../assets/chat.gif')} style={{ height:40, width:40,}}/>
             <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>Support</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center', marginLeft:10, borderRadius:10, elevation:7, backgroundColor:light}}>
+        <TouchableOpacity onPress={()=>{navigation.navigate('mapView')}} style={{flex:1, justifyContent:'center', alignItems:'center', marginLeft:10, borderRadius:10, elevation:7, backgroundColor:light}}>
         <Image source={require('../assets/analytics.gif')} style={{ height:40, width:40,}}/>
             <Text style={{fontWeight: "bold", fontSize:16,color:dark}}>Analytics</Text>
         </TouchableOpacity>

@@ -32,6 +32,7 @@ import Settings from './Screens/AppSettings';
 import SetUpBiometrics from './Screens/SetUpBiometric';
 import Budget from './Screens/Budget';
 import LoadingScreen1 from './Components/LoadingScreen1';
+import KardifyMapView from './Screens/KardifyMapView';
 
 
 
@@ -60,6 +61,7 @@ export default function App() {
               <Stack.Screen name="Verify Phone" component={VerifyPhone} options={{ headerShown: false, headerTitleAlign: "center" }}/>
               <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false, headerTitleAlign: "center" }}/>
               <Stack.Screen name="Loading1" component={LoadingScreen1} options={{ headerShown: false, headerTitleAlign: "center" }}/>
+              <Stack.Screen name="mapView" component={KardifyMapView} options={{ headerShown: false, headerTitleAlign: "center" }}/>
               
             </Stack.Navigator>
             
