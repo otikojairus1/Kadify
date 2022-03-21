@@ -45,7 +45,7 @@ export default function KardifyMapView() {
  
  
   let text = JSON.stringify(CurrentLocation);
-console.log(text);
+//console.log(text);
   // end of use effect hook
 if (loading){
   return(

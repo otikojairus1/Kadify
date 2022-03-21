@@ -1,6 +1,6 @@
 import React from 'react';
 import { primary,secondary, dark, light, } from '../Palletes/Colours'
-import { View, KeyboardAvoidingView, Dimensions, TextInput, StyleSheet, Text, Platform, TouchableWithoutFeedback, TouchableOpacity, Keyboard  } from 'react-native';
+import { View, KeyboardAvoidingView, Dimensions, TextInput, StyleSheet, Text, Platform, TouchableWithoutFeedback, TouchableOpacity, Keyboard ,Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome , AntDesign} from '@expo/vector-icons';
 import { 
@@ -98,8 +98,8 @@ const Login = ({navigation}) => {
 
 
 </View>
-<TouchableOpacity onPress={biometricsAuth} style={{position:"absolute", left:140, top:650}}>
-<Ionicons name="ios-finger-print-outline" size={74} color={primary} />
+<TouchableOpacity onPress={biometricsAuth} style={{position:"absolute", left:120, top:630}}>
+<Image source={require('../assets/finger.gif')} style={{ height:120, width:120, borderRadius:20}}/>
 </TouchableOpacity>
 
 

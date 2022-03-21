@@ -59,7 +59,7 @@ export default function SetUpBiometrics({navigation}) {
       <View style={{height:280, marginTop:20, justifyContent:'center', alignItems:'center', backgroundColor:backgroundColor}}>
         <View style={{borderRadius:140, padding:3, borderColor: primary}}>
               <TouchableOpacity  style={{borderRadius:120, padding:20, borderColor: secondary}}>
-                 <Ionicons name="ios-finger-print-outline" size={174} color={primary} />
+              <Image source={require('../assets/finger.gif')} style={{ height:220, width:220, borderRadius:20}}/>
               </TouchableOpacity>
               </View>
       </View>
