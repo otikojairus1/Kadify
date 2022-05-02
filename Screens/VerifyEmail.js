@@ -75,7 +75,7 @@ const VerifyEmail = ({navigation}) => {
 
 <View style={{height: 180, backgroundColor: light, paddingLeft:40, paddingTop:30}}>
     <Text style={{ fontSize:16, fontWeight:'bold', color:primary }}>The code will expire upon completion of the countdown!</Text>
-    <TouchableOpacity onPress={()=>{navigation.navigate('Register Phone')}} style={{marginTop:12}}>
+    <TouchableOpacity onPress={()=>{navigation.navigate('PhoneOTP')}} style={{marginTop:12}}>
         <Text style={{ fontSize:16, color:primary }}>Did'nt get the code? Resend Here!</Text>
 
     </TouchableOpacity>

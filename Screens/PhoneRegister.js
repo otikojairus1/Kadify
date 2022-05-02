@@ -3,16 +3,42 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import PhoneInput from "react-native-phone-input";
 import { light, dark, secondary, primary, bg } from "../Palletes/Colours";
+import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
+import * as firebase from "firebase";
+
+// Initialize Firebase JS SDK
+// https://firebase.google.com/docs/web/setup
+try {
+  firebase.initializeApp({
+ 
+  apiKey: "AIzaSyByJnlmWtrWxOc5RA2-g5txqUGuMcx8wvQ",
+  authDomain: "kadify.firebaseapp.com",
+  projectId: "kadify",
+  storageBucket: "kadify.appspot.com",
+  messagingSenderId: "153045552022",
+  appId: "1:153045552022:web:097c313abcc9ced972abb7",
+  measurementId: "G-EWXQGSYJNC"
+
+
+  });
+} catch (err) {
+  // ignore app already initialized error in snack
+}
 
 export default class PhoneRegister extends Component {
   
   constructor() {
     super();
 
+    this.recaptchaVerifier = React.createRef(null);
+
     this.state = {
       valid: "",
       type: "",
-      value: ""
+      value: "",
+      verificationId:"",
+      verificationCode:""
+
     };
 
     this.updateInfo = this.updateInfo.bind(this);
@@ -57,8 +83,17 @@ export default class PhoneRegister extends Component {
   }
 
   render() {
+   
+ 
+    const firebaseConfig = firebase.apps.length ? firebase.app().options : undefined;
+
+  
     return (
       <View style={styles.container}>
+             <FirebaseRecaptchaVerifierModal
+                ref={this.recaptchaVerifier}
+                firebaseConfig={firebaseConfig}
+              />
           <View style={{height:100, paddingLeft:0, width:300, marginTop:100, backgroundColor:"EDF8F9"}}>
             <Text style={{ fontSize:34, fontWeight:'bold'}}>Phone</Text>
             <Text style={{ fontSize:34, fontWeight:'bold'}}> Registration</Text>
@@ -88,13 +123,38 @@ export default class PhoneRegister extends Component {
 
        
 
-        <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Verify Phone')}} style={{height: 50, elevation:10,  borderRadius:10, width: 300, justifyContent:'center', alignItems:'center', backgroundColor:primary, marginTop: 30}}>
+        <TouchableOpacity onPress={()=>{
+                    console.log("working");
+                    async () => {
+                              // The FirebaseRecaptchaVerifierModal ref implements the
+                              // FirebaseAuthApplicationVerifier interface and can be
+                              // passed directly to `verifyPhoneNumber`.
+                              try {
+                                const phoneProvider = new firebase.auth.PhoneAuthProvider();
+                                const verificationId = await phoneProvider.verifyPhoneNumber(
+                                  "+254722753364",
+                                  this.recaptchaVerifier
+                                );
+                                this.setState({
+                                  verificationId:verificationId
+                                });
+                              
+                          
+                              } catch (err) {
+                                
+                              }
+                            }
+        // this.props.navigation.navigate('Verify Phone')
+         
+          
+          }} style={{height: 50, elevation:10,  borderRadius:10, width: 300, justifyContent:'center', alignItems:'center', backgroundColor:primary, marginTop: 30}}>
             <Text style={{ fontSize:20, color:light}}>Register Phone Number</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{marginTop:25}}>
             <Text style={{fontWeight: "bold", textAlign:'center'}}>Kindly review our Terms and Conditions Policy regarding </Text>
             <Text style={{fontWeight: "bold", textAlign:'center'}}>Our phone number verification service </Text>
         </TouchableOpacity>
+        {/* <Text>{this.state.value}</Text> */}
         <View style={{height:3, borderRadius:10, width: 200, backgroundColor:primary, marginTop:150}}></View>
       </View>
     );

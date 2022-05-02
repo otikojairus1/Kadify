@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NativeBaseProvider, Box } from "native-base";
-
+import * as firebase from "firebase";
 // navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -33,6 +33,7 @@ import SetUpBiometrics from './Screens/SetUpBiometric';
 import Budget from './Screens/Budget';
 import LoadingScreen1 from './Components/LoadingScreen1';
 import KardifyMapView from './Screens/KardifyMapView';
+import OtpFirebase from './Screens/phoneOTP';
 
 
 
@@ -62,7 +63,7 @@ export default function App() {
               <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false, headerTitleAlign: "center" }}/>
               <Stack.Screen name="Loading1" component={LoadingScreen1} options={{ headerShown: false, headerTitleAlign: "center" }}/>
               <Stack.Screen name="mapView" component={KardifyMapView} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              
+              <Stack.Screen name="PhoneOTP" component={OtpFirebase} options={{ headerShown: false, headerTitleAlign: "center" }} /> 
             </Stack.Navigator>
             
         </NavigationContainer>
