@@ -3,10 +3,45 @@ import React from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { dark, primary } from '../Palletes/Colours';
 import { NavigationContainer } from '@react-navigation/native';
+import LoadingScreen1 from '../Components/LoadingScreen1';
 // import CheckBox from '@react-native-community/checkbox'
+import axios from 'axios'
+import { BASE_URI } from '../BASE_URI';
 
 export default function SignUp({navigation}) {
     const [isSelected, setSelection] = React.useState(false);
+    const [fullName, setName] = React.useState("");
+    const [Email, setEmail] = React.useState("");
+    const [Password, setPassword] = React.useState("");
+    const [CPassword, setCPassword] = React.useState("");
+    const [loading, setLoading] = React.useState(false);
+
+function submit(){
+  setLoading(true);
+  axios.post(BASE_URI+'/api/send/email/otp',{
+    'email':"otikojairus@gmail.com",
+    'name':"jairus otiko"
+  }).then((response)=>{
+    setLoading(false);
+    navigation.navigate('Verify Email');
+
+  }).catch((err)=>{
+    console.log(err);
+  })
+
+  // console.log(fullName, Email, Password);
+}
+
+
+if(loading){
+
+  return(
+    <LoadingScreen1 />
+  );
+
+}else{
+
+
   return (
     <KeyboardAvoidingView
     behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -26,17 +61,17 @@ export default function SignUp({navigation}) {
         {/* Start of details input*/}
         <View style={{marginTop:10, paddingLeft: 17,paddingRight:17, justifyContent:'center', alignItems: 'center',height: 240}}>
             <View style={{flex:1}}>
-                <TextInput autoFocus={false} placeholder="Full names" style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16,borderWidth:1, borderColor: '#e8e9f1',backgroundColor: '#e8e9f1'}}></TextInput>
+                <TextInput autoFocus={false} value={fullName} onChangeText={(text)=>{setName(text)}} placeholder="Full names" style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16,borderWidth:1, borderColor: '#e8e9f1',backgroundColor: '#e8e9f1'}}></TextInput>
             </View>
             <View style={{flex:1}}>
-            <TextInput placeholder="Email address" style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16,borderWidth:1, borderColor: '#e8e9f1',backgroundColor: '#e8e9f1'}}></TextInput>
+            <TextInput value={Email} onChangeText={(text)=>{setEmail(text)}} placeholder="Email address" style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16,borderWidth:1, borderColor: '#e8e9f1',backgroundColor: '#e8e9f1'}}></TextInput>
             </View>
             <View style={{flex:1}}>
-            <TextInput placeholder="Password " secureTextEntry={true} style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}></TextInput>
+            <TextInput placeholder="Password " value={Password} onChangeText={(text)=>{setPassword(text)}} secureTextEntry={true} style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}></TextInput>
             </View>
 
             <View style={{flex:1}}>
-            <TextInput placeholder="Confirm Password" secureTextEntry={true} style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}></TextInput>
+            <TextInput placeholder="Confirm Password" value={CPassword} onChangeText={(text)=>{setCPassword(text)}} secureTextEntry={true} style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}></TextInput>
             </View>
 
         </View>
@@ -62,7 +97,7 @@ export default function SignUp({navigation}) {
 
         {/* Buttons section start */}
         <View style={{marginTop: 30, height: 175, marginRight:17, justifyContent: 'center', alignItems: 'center',marginLeft: 17}}>
-            <TouchableOpacity onPress={()=>{navigation.navigate('Verify Email')}} style={{flex:1, height: 90, width: 320, justifyContent: 'center', alignItems: 'center',borderRadius: 10,backgroundColor: '#4f62c0'}}>
+            <TouchableOpacity onPress={submit} style={{flex:1, height: 90, width: 320, justifyContent: 'center', alignItems: 'center',borderRadius: 10,backgroundColor: '#4f62c0'}}>
                 <Text style={{fontSize:25, color: 'white'}}>Sign up my account</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{flex:1, flexDirection: 'row',height: 90, width: 320, justifyContent: 'center', alignItems: 'center',borderRadius: 10, marginTop: 10,backgroundColor: dark}}>
@@ -84,7 +119,7 @@ export default function SignUp({navigation}) {
     </View>
     </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
-  )
+  )}
 }
 
 
