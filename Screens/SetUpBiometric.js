@@ -10,10 +10,29 @@ import {
   LocalAuthenticationOptions,
   authenticateAsync 
 } from 'expo-local-authentication';
+import axios from 'axios';
+import {BASE_URI} from '../BASE_URI'
+
 let backgroundColor = '#EDF8F9';
 
+export default function SetUpBiometrics({navigation, route}) {
 
-export default function SetUpBiometrics({navigation}) {
+  const {phone, email} = route.params;
+
+React.useEffect(()=>{
+  console.log(phone);
+  axios.post(BASE_URI+'/api/update/verified/phone', {
+    'email':email,
+    'phone':phone
+  })
+  .then((response)=>{
+    console.log("phone updated successfully!")
+  })
+  .catch((err)=>{
+    console.log(err);
+  })
+})
+
   const biometricsAuth = async () => {
      
     const compatible = await hasHardwareAsync()

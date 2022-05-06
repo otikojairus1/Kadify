@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { dark, primary } from '../Palletes/Colours';
 import { NavigationContainer } from '@react-navigation/native';
 import LoadingScreen1 from '../Components/LoadingScreen1';
+import { useToast , Box} from 'native-base';
 // import CheckBox from '@react-native-community/checkbox'
 import axios from 'axios'
 import { BASE_URI } from '../BASE_URI';
@@ -15,19 +16,55 @@ export default function SignUp({navigation}) {
     const [Password, setPassword] = React.useState("");
     const [CPassword, setCPassword] = React.useState("");
     const [loading, setLoading] = React.useState(false);
+    const toast = useToast();
 
 function submit(){
+  // validate app inputs
+
+if(fullName == "" || Email == "" || Password == "" || CPassword == "" || CPassword !== Password){
+
+      
+  toast.show({
+    // placement: "top",
+    render: () => {
+      return <Box bg="red.500" px="2" py="1" rounded="sm" mb={5}>
+              Kindly fill in all the required fields and make sure the password and confirmation password provided matches.
+            </Box>;}
+  });
+
+}else{
+
   setLoading(true);
   axios.post(BASE_URI+'/api/send/email/otp',{
-    'email':"otikojairus@gmail.com",
-    'name':"jairus otiko"
+    'email':Email,
+    "password":Password,
+    'fullName':fullName
   }).then((response)=>{
     setLoading(false);
-    navigation.navigate('Verify Email');
+    if(response.data.success == false){
+
+
+      
+      toast.show({
+        render: () => {
+          return <Box bg="red.500" px="2" py="1" rounded="sm" mb={5}>
+                  Kindly use a unique email address
+                </Box>;}
+      });
+
+    }else{
+      navigation.navigate('Verify Email', {'email':Email});
+    }
+    
+   
 
   }).catch((err)=>{
     console.log(err);
   })
+
+
+}
+  //end of app input validation
 
   // console.log(fullName, Email, Password);
 }

@@ -10,7 +10,8 @@ import AnimatedCodeInput from "@brainsbeards/react-native-animated-code-input";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
-const VerifyPhone = ({navigation}) => {
+const VerifyPhone = ({navigation, route}) => {
+  const {email} = route.params;
     const [code, setCode] = React.useState('');
     const onChangeText = React.useCallback((text) => {
         setCode(text);

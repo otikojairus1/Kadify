@@ -5,20 +5,59 @@ import { View, KeyboardAvoidingView, Dimensions, TextInput, StyleSheet, Text, Pl
 import CountDown from 'react-native-countdown-component';
 import { FontAwesome , AntDesign} from '@expo/vector-icons';
 import AnimatedCodeInput from "@brainsbeards/react-native-animated-code-input";
-
+import LoadingScreen1 from '../Components/LoadingScreen1'
+import axios from 'axios';
+import { useToast } from 'native-base';
+import {BASE_URI} from '../BASE_URI'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
-const VerifyEmail = ({navigation}) => {
+const VerifyEmail = ({navigation, route}) => {
+  const {email} = route.params;
     const [code, setCode] = React.useState('');
+    const toast = useToast();
+    const [loading, setLoading] = React.useState(false);
     const onChangeText = React.useCallback((text) => {
         setCode(text);
       }, []);
 
       const onSubmit = () => {
-          console.log("worked");
+        setLoading(true);
+        axios.post(BASE_URI+'/api/verify/email/otp',{
+          "email":email,
+          "otp":code
+        })
+        .then((response)=>{
+          console.log(response.data);
+          setLoading(false);
+          if(response.data.responseCode == 200){
+            navigation.navigate('PhoneOTP',{"email":email});
+          }else{
+            toast.show({
+              description: "your email OTP code was incorrect, double check your email and retry again"
+            });
+          }
+     
+        
+        })
+        .catch((err)=>{
+          console.log(err);
+          setLoading(false);
+        })
+        
+         // console.log("worked", code);
       }
+
+
+    if(loading){
+      return(
+        <LoadingScreen1 />
+      );
+
+    }else{
+
+    
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -43,7 +82,7 @@ const VerifyEmail = ({navigation}) => {
  <Text style={{ fontSize:16, }}> address. If you can't find it make sure you double </Text>
  <Text style={{ fontSize:16, }}> check your email before retrying. We've sent the</Text>
  <Text style={{ fontSize:16, }}> code to:</Text>
- <Text style={{ fontSize:18, fontWeight:'bold', color:primary }}> jane@yahoo.com</Text>
+ <Text style={{ fontSize:18, fontWeight:'bold', color:primary }}> {email}</Text>
 </View>
 
 {/* end of description */}
@@ -75,7 +114,7 @@ const VerifyEmail = ({navigation}) => {
 
 <View style={{height: 180, backgroundColor: light, paddingLeft:40, paddingTop:30}}>
     <Text style={{ fontSize:16, fontWeight:'bold', color:primary }}>The code will expire upon completion of the countdown!</Text>
-    <TouchableOpacity onPress={()=>{navigation.navigate('PhoneOTP')}} style={{marginTop:12}}>
+    <TouchableOpacity onPress={()=>{}} style={{marginTop:12}}>
         <Text style={{ fontSize:16, color:primary }}>Did'nt get the code? Resend Here!</Text>
 
     </TouchableOpacity>
@@ -99,6 +138,7 @@ const VerifyEmail = ({navigation}) => {
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
+    }
 };
 
 const styles = StyleSheet.create({

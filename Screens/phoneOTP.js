@@ -27,8 +27,8 @@ try {
   // ignore app already initialized error in snack
 }
 
-export default function OtpFirebase({navigation}) {
- 
+export default function OtpFirebase({navigation, route}) {
+ const {email} = route.params;
   const recaptchaVerifier = React.useRef(null);
   const [phoneNumber, setPhoneNumber] = React.useState();
   const [verificationId, setVerificationId] = React.useState();
@@ -110,7 +110,7 @@ export default function OtpFirebase({navigation}) {
               verificationCode
             );
             await firebase.auth().signInWithCredential(credential);
-            navigation.navigate('Enable Biometrics');
+            navigation.navigate('Enable Biometrics', {"phone":phoneNumber, "email":email});
             // showMessage({ text: "Phone authentication successful 👍" });
           } catch (err) {
             showMessage({ text: `Error: ${err.message}`, color: "red" });
