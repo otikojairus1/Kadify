@@ -12,12 +12,22 @@ import {
 } from 'expo-local-authentication';
 import axios from 'axios';
 import {BASE_URI} from '../BASE_URI'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 let backgroundColor = '#EDF8F9';
 
 export default function SetUpBiometrics({navigation, route}) {
 
   const {phone, email} = route.params;
+
+  // const storeData = async (value) => {
+  //   try {
+  //     await AsyncStorage.setItem('@storage_Key', value)
+  //   } catch (e) {
+  //     // saving error
+  //   }
+  // }
 
 React.useEffect(()=>{
   console.log(phone);
@@ -27,6 +37,7 @@ React.useEffect(()=>{
   })
   .then((response)=>{
     console.log("phone updated successfully!")
+    
   })
   .catch((err)=>{
     console.log(err);
@@ -44,6 +55,15 @@ React.useEffect(()=>{
     if (!result.success) throw `${result.error} - Authentication unsuccessful`
 
     if(result){
+      let biometricID = email;
+
+     
+      
+      if( AsyncStorage.setItem('biometricsID', biometricID)){
+        console.log("biometricID stored");
+      }
+     
+
       navigation.navigate('HomeWallet');
     }
     return result

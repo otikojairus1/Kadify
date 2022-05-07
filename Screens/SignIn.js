@@ -9,12 +9,20 @@ import {
   LocalAuthenticationOptions,
   authenticateAsync 
 } from 'expo-local-authentication';
+import axios from 'axios'
+import { useToast , Box} from 'native-base';
+import LoadingScreen1 from '../Components/LoadingScreen1'
+import {BASE_URI} from '../BASE_URI'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
 const Login = ({navigation}) => {
-
+const [email, setEmail] = React.useState("");
+const [password, setPassword] = React.useState("");
+const [loading, setLoading] = React.useState(false);
+const toast = useToast();
 
  const biometricsAuth = async () => {
      
@@ -27,11 +35,71 @@ const Login = ({navigation}) => {
      if (!result.success) throw `${result.error} - Authentication unsuccessful`
 
      if(result){
-       navigation.navigate('HomeWallet');
+       AsyncStorage.getItem('biometricsID').then((value)=>{
+        console.log(value);
+        navigation.navigate('HomeWallet');
+       })
+    
      }
      return result
  }
 
+ const onSubmit = () => {
+ //  console.log(email, password);
+ setLoading(true);
+
+//  axios.post(BASE_URI+'api/login',{
+//    "email":"otikojairus@gmail.com",
+//    "password":"12345678"
+//  })
+//  .then((response)=>{
+//    console.log(response.data);
+//    setLoading(false);
+//    navigation.navigate('HomeWallet')
+
+//  })
+//  .catch((err)=>{
+//    console.log(err);
+//    setLoading(false);
+//  })
+
+setLoading(true);
+axios.post(BASE_URI+'/api/login',{
+  'email':email,
+  "password":password,
+ 
+}).then((response)=>{
+  console.log(response.data);
+  setLoading(false);
+  if(response.data.responseCode !== 200){
+
+
+    
+    toast.show({
+      render: () => {
+        return <Box bg="red.500" px="2" py="1" rounded="sm" mb={5}>
+               wrong credentials
+              </Box>;}
+    });
+
+  }else{
+    navigation.navigate('HomeWallet');
+  }
+  
+ 
+
+}).catch((err)=>{
+  console.log(err);
+})
+
+ 
+
+ 
+ }
+
+if(loading){
+  return (<LoadingScreen1/>);
+}else{
 
 
   return (
@@ -65,10 +133,10 @@ const Login = ({navigation}) => {
 
       <View style={{marginTop:10, paddingLeft: 17,paddingRight:17, justifyContent:'center', alignItems: 'center',height: 140}}>
             <View style={{flex:1}}>
-            <TextInput placeholder="Email address" style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16,borderWidth:1, borderColor: '#e8e9f1',backgroundColor: '#e8e9f1'}}></TextInput>
+            <TextInput value={email} onChangeText={(text)=>setEmail(text)} placeholder="Email address" style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16,borderWidth:1, borderColor: '#e8e9f1',backgroundColor: '#e8e9f1'}}></TextInput>
             </View>
             <View style={{flex:1}}>
-            <TextInput placeholder="Password " secureTextEntry={true} style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}></TextInput>
+            <TextInput value={password} onChangeText={(text)=>setPassword(text)} placeholder="Password " secureTextEntry={true} style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}></TextInput>
             </View>
         </View>
 
@@ -78,7 +146,7 @@ const Login = ({navigation}) => {
 {/* start of buttons */}
 
 <View style={{height: 180, backgroundColor: light}}>
-    <TouchableOpacity onPress={()=>{ navigation.navigate('HomeWallet')}} style={{width:"87%", height: 50, display:'flex', flexDirection:'row', marginTop:20, marginLeft: 17, borderRadius:10, justifyContent:'center', alignItems:'center', backgroundColor: primary}}>
+    <TouchableOpacity onPress={onSubmit} style={{width:"87%", height: 50, display:'flex', flexDirection:'row', marginTop:20, marginLeft: 17, borderRadius:10, justifyContent:'center', alignItems:'center', backgroundColor: primary}}>
     <AntDesign name="login" size={24} color="#fff" />
         <Text style={{ fontSize:20, marginLeft:10, color:light, fontWeight:'bold'}}>Sign in</Text>
     </TouchableOpacity>
@@ -110,6 +178,9 @@ const Login = ({navigation}) => {
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
+
+}
+
 };
 
 const styles = StyleSheet.create({
