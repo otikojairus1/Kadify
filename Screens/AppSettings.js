@@ -5,11 +5,11 @@ import { Ionicons, MaterialIcons, MaterialCommunityIcons, Entypo } from '@expo/v
 import { Switch } from 'native-base';
 
 
-export default function Settings({navigation}) {
+export default function Settings({navigation, openDrawer}) {
   return (
     <View style={{marginTop:40, flex:1,backgroundColor: '#EDF8F9'}}>
         {/* Start appbar */}
-        <Appbar/>
+        <Appbar toggleDrawer = {openDrawer} />
         {/* End appbar */}
         
         {/* Header section */}

@@ -14,7 +14,7 @@ import Settings from '../AppSettings';
 const Tab = createBottomTabNavigator();
 
 
-export default function BottomTabs({navigation}) {
+export default function BottomTabs({navigation, openDrawer}) {
   return (
     <Tab.Navigator
       initialRouteName="HomeWallet2"
@@ -28,7 +28,7 @@ export default function BottomTabs({navigation}) {
       <Tab.Screen
         name="Home"
         //component={TabOne}
-        children={()=><HomeWallet navigation={navigation}/>}
+        children={()=><HomeWallet openDrawer={openDrawer} navigation={navigation}/>}
 
         options={{
           tabBarLabel: 'Home',
@@ -41,7 +41,7 @@ export default function BottomTabs({navigation}) {
       <Tab.Screen
         name="p"
         //component={TabOne}
-        children={()=><MyCards navigation={navigation}/>}
+        children={()=><MyCards openDrawer={openDrawer}  navigation={navigation}/>}
 
         options={{
           tabBarLabel: 'My Wallet',
@@ -54,7 +54,7 @@ export default function BottomTabs({navigation}) {
 <Tab.Screen
         name="pay"
         //component={TabOne}
-        children={()=><Settings navigation={navigation}/>}
+        children={()=><Settings openDrawer={openDrawer}  navigation={navigation}/>}
 
         options={{
           tabBarLabel: 'Settings',

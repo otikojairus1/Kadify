@@ -7,12 +7,13 @@ import { AntDesign,Fontisto,MaterialCommunityIcons, MaterialIcons, Octicons,Simp
 import LoadingScreen1 from '../Components/LoadingScreen1';
 
 
-export default function HomeWallet({navigation}) {
+export default function HomeWallet({navigation, openDrawer}) {
 
     // component did mount here
 
     useEffect(()=>{
         setTimeout(() => {
+            
             setLoading(false);
             
          }, 3000);
@@ -45,7 +46,7 @@ if(loading){
 
   return (
     <View style={{paddingTop:75, flex:1, justifyContent:'center', backgroundColor:bg}}>
-      <Appbar />
+     <Appbar toggleDrawer = {openDrawer} />
       {/* start of hello dislplay */}
 
         <View style={{height:100, marginLeft:17, marginRight:2,  flexDirection:'row', backgroundColor:bg}}>

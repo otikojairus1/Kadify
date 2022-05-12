@@ -8,7 +8,7 @@ import { Button, Actionsheet, AlertDialog, useDisclose, Box, Switch, Center, Nat
 import { Path } from "react-native-svg";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
-export default function MyCards() {
+export default function MyCards({openDrawer, navigation}) {
 
 // dialog issues
 
@@ -31,7 +31,7 @@ const cancelRef = React.useRef(null);
     <View style={{ justifyContent:"center", marginTop:40, backgroundColor:bg }}>
           {/* start of appbar */}
             <View style={{width:355}}>
-            <Appbar />
+            <Appbar toggleDrawer = {openDrawer} />
         </View>
       {/* end of appbar */}
 {/* start of carding words */}
