@@ -38,6 +38,7 @@ import OtpFirebase from './Screens/phoneOTP';
 import MpesaDeposit from './Screens/mpesaDeposit';
 import MpesaNotice from './Components/MpesaNotice';
 import { primary } from './Palletes/Colours';
+import MyWeb from './Screens/webview'
 
 
 
@@ -45,17 +46,17 @@ import { primary } from './Palletes/Colours';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  
+
 
   const drawer = React.useRef(null);
   const [drawerPosition, setDrawerPosition] = React.useState("left");
 
   const navigationView = () => (
     <View style={[styles.container, styles.navigationContainer]}>
-      <View style={{height:150, justifyContent:"center", alignItems:"center", backgroundColor:primary, width:"110%"}}>
-        <Text style={{fontSize:37, fontWeight:"bold", color:"#fff"}}>Kadify</Text>
+      <View style={{ height: 150, justifyContent: "center", alignItems: "center", backgroundColor: primary, width: "110%" }}>
+        <Text style={{ fontSize: 37, fontWeight: "bold", color: "#fff" }}>Kadify</Text>
       </View>
-      <TouchableOpacity onPress={()=>{}} style={{height: 100, width:"110%",justifyContent:'center', alignItems:'center'}}>
+      <TouchableOpacity onPress={() => { }} style={{ height: 100, width: "110%", justifyContent: 'center', alignItems: 'center' }}>
         <Text>Deposit Money</Text>
       </TouchableOpacity>
 
@@ -63,51 +64,52 @@ export default function App() {
   );
   return (
     <NativeBaseProvider>
-          <NavigationContainer>
-          <DrawerLayoutAndroid
+      <NavigationContainer>
+        <DrawerLayoutAndroid
           ref={drawer}
           drawerWidth={300}
           drawerPosition={drawerPosition}
           renderNavigationView={navigationView}
         >
-            <Stack.Navigator initialRouteName="Welcome3" >
-              {/* stacks with drawer here */}
-     
-              <Stack.Screen name="MyCard" options={{ headerShown: false, headerTitleAlign: "center" }}>
-                {props => <MyCards {...props} openDrawer={() => drawer.current.openDrawer()} options={{ headerShown: false, headerTitleAlign: "center" }}/>}
-              </Stack.Screen>
-              <Stack.Screen name="HomeWallet" options={{ headerShown: false, headerTitleAlign: "center" }}>
-                {props => <BottomTabs {...props} openDrawer={() => drawer.current.openDrawer()} options={{ headerShown: false, headerTitleAlign: "center" }}/>}
-              </Stack.Screen>
+          <Stack.Navigator initialRouteName="HomeWallet" >
+            {/* stacks with drawer here */}
 
-              {/* end of stacks with drawers */}
-              <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              <Stack.Screen name="sign up" component={SignUp} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              <Stack.Screen name="Welcome2" component={Welcome2} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              <Stack.Screen name="Welcome3" component={Welcome3} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              <Stack.Screen name="Welcome5" component={Welcome5} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              <Stack.Screen name="Welcome4" component={Welcome4} options={{ headerShown: false, headerTitleAlign: "center" }}/>     
-              <Stack.Screen name="sign in" component={Login} options={{ headerShown: false, headerTitleAlign: "center" }}/>   
-              {/* <Stack.Screen name="HomeWallet" component={BottomTabs} options={{ headerShown: false, headerTitleAlign: "center" }}/>     */}
-              {/* <Stack.Screen name="MyCard" component={MyCards} options={{ headerShown: false, headerTitleAlign: "center" }}/>    */}
-              <Stack.Screen name="transfer" component={TransferFunds} options={{ headerShown: false, headerTitleAlign: "center" }}/> 
-              <Stack.Screen name="Help" component={Help} options={{ headerShown: false, headerTitleAlign: "center" }}/> 
-              <Stack.Screen name="App Settings" component={Settings} options={{ headerShown: false, headerTitleAlign: "center" }}/>   
-              <Stack.Screen name="Enable Biometrics" component={SetUpBiometrics} options={{ headerShown: false, headerTitleAlign: "center" }}/>  
-              <Stack.Screen name="Verify Email" component={VerifyEmail} options={{ headerShown: false, headerTitleAlign: "center" }}/>   
-              <Stack.Screen name="Register Phone" component={PhoneRegister} options={{ headerShown: false, headerTitleAlign: "center" }}/>  
-              <Stack.Screen name="Verify Phone" component={VerifyPhone} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              <Stack.Screen name="Loading1" component={LoadingScreen1} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              <Stack.Screen name="mapView" component={KardifyMapView} options={{ headerShown: false, headerTitleAlign: "center" }}/>
-              <Stack.Screen name="PhoneOTP" component={OtpFirebase} options={{ headerShown: false, headerTitleAlign: "center" }} /> 
-              <Stack.Screen name="mpesa" component={MpesaDeposit} options={{ headerShown: false, headerTitleAlign: "center" }} /> 
-              <Stack.Screen name="mpesanotice" component={MpesaNotice} options={{ headerShown: false, headerTitleAlign: "center" }} /> 
-           
-            </Stack.Navigator>
-            </DrawerLayoutAndroid>
+            <Stack.Screen name="MyCard" options={{ headerShown: false, headerTitleAlign: "center" }}>
+              {props => <MyCards {...props} openDrawer={() => drawer.current.openDrawer()} options={{ headerShown: false, headerTitleAlign: "center" }} />}
+            </Stack.Screen>
+            <Stack.Screen name="HomeWallet" options={{ headerShown: false, headerTitleAlign: "center" }}>
+              {props => <BottomTabs {...props} openDrawer={() => drawer.current.openDrawer()} options={{ headerShown: false, headerTitleAlign: "center" }} />}
+            </Stack.Screen>
+
+            {/* end of stacks with drawers */}
+            <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="sign up" component={SignUp} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Welcome2" component={Welcome2} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Welcome3" component={Welcome3} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Welcome5" component={Welcome5} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Welcome4" component={Welcome4} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="sign in" component={Login} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            {/* <Stack.Screen name="HomeWallet" component={BottomTabs} options={{ headerShown: false, headerTitleAlign: "center" }}/>     */}
+            {/* <Stack.Screen name="MyCard" component={MyCards} options={{ headerShown: false, headerTitleAlign: "center" }}/>    */}
+            <Stack.Screen name="transfer" component={TransferFunds} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Help" component={Help} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="App Settings" component={Settings} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Enable Biometrics" component={SetUpBiometrics} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Verify Email" component={VerifyEmail} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Register Phone" component={PhoneRegister} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Verify Phone" component={VerifyPhone} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Loading1" component={LoadingScreen1} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="mapView" component={KardifyMapView} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="PhoneOTP" component={OtpFirebase} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="mpesa" component={MpesaDeposit} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="mpesanotice" component={MpesaNotice} options={{ headerShown: false, headerTitleAlign: "center" }} />
             
-        </NavigationContainer>
+            <Stack.Screen name="MyWeb" component={MyWeb} options={{ headerShown: false, headerTitleAlign: "center" }} />
+          </Stack.Navigator>
+        </DrawerLayoutAndroid>
+
+      </NavigationContainer>
     </NativeBaseProvider>
 
   );
@@ -118,9 +120,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop:20,
-    marginLeft:-20,
-    
+    marginTop: 20,
+    marginLeft: -20,
+
     // alignItems: "center",
     // justifyContent: "center",
     padding: 16
@@ -132,4 +134,5 @@ const styles = StyleSheet.create({
     padding: 16,
     fontSize: 15,
     textAlign: "center"
-  }})
+  }
+})

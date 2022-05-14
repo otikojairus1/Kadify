@@ -1,4 +1,4 @@
-const BASE_URI = "https://7073-102-167-237-206.eu.ngrok.io";
+const BASE_URI = "https://c0a8-154-122-113-94.eu.ngrok.io";
 export {
     BASE_URI
 }
