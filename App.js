@@ -39,6 +39,8 @@ import MpesaDeposit from './Screens/mpesaDeposit';
 import MpesaNotice from './Components/MpesaNotice';
 import { primary } from './Palletes/Colours';
 import MyWeb from './Screens/webview'
+import ContactList from './Screens/PhoneContacts/phoneContacts';
+import CreateCards from './Screens/createCard';
 
 
 
@@ -104,6 +106,8 @@ export default function App() {
             <Stack.Screen name="PhoneOTP" component={OtpFirebase} options={{ headerShown: false, headerTitleAlign: "center" }} />
             <Stack.Screen name="mpesa" component={MpesaDeposit} options={{ headerShown: false, headerTitleAlign: "center" }} />
             <Stack.Screen name="mpesanotice" component={MpesaNotice} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="ContactList" component={ContactList} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="createCard" component={CreateCards} options={{ headerShown: false, headerTitleAlign: "center" }} />
             
             <Stack.Screen name="MyWeb" component={MyWeb} options={{ headerShown: false, headerTitleAlign: "center" }} />
           </Stack.Navigator>

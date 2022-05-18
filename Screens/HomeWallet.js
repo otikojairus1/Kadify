@@ -40,8 +40,8 @@ export default function HomeWallet({ navigation, openDrawer }) {
             <View style={{ paddingTop: 75, flex: 1, justifyContent: 'center', backgroundColor: bg }}>
                 <Appbar toggleDrawer={openDrawer} />
                 {/* start of hello dislplay */}
-                <View style={{ position: "absolute", top: 37, left: 145 }}><Text style={{ color:primary,fontSize: 20, fontWeight: 'bold', }}>BALANCE</Text></View>
-                <View style={{ position: "absolute", top:60, left: 95 }}><Text style={{ fontSize: 30, color: dark }}>KES. 2000.00</Text></View>
+                <View style={{ position: "absolute", top: 37, left: 90 }}><Text style={{ color:primary,fontSize: 20, fontWeight: 'bold', }}>AVAILABLE BALANCE</Text></View>
+                <View style={{ position: "absolute", top:60, left: 95 }}><Text style={{ fontSize: 30, color: "green" }}>KES. 2000.00</Text></View>
                 <View style={{ height: 100, marginLeft: 17, marginRight: 2, flexDirection: 'row', backgroundColor: bg }}>
                     <View style={{ flex: 2, }}>
                         <Text style={{ fontSize: 25, fontWeight: 'bold', color: "grey" }}>Hello</Text>
@@ -183,10 +183,10 @@ export default function HomeWallet({ navigation, openDrawer }) {
 
                 {/* end of complete profile */}
                 {/* start of completed tasks */}
-                <View style={{ height: 60, marginLeft: 17, marginRight: 17, flexDirection: 'row', padding: 10, borderRadius: 10, elevation: 7, backgroundColor: light, justifyContent: 'space-between', }}>
+                <TouchableOpacity onPress={()=>navigation.navigate('ContactList')}    style={{ height: 60, marginLeft: 17, marginRight: 17, flexDirection: 'row', padding: 10, borderRadius: 10, elevation: 7, backgroundColor: light, justifyContent: 'space-between', }}>
                     <Text style={{ fontWeight: 'bold', color: dark, fontSize: 20 }}>60% completed</Text>
                     <Text style={{ fontWeight: 'bold', color: "grey", fontSize: 20 }}>7 out of 10 completed</Text>
-                </View>
+                </TouchableOpacity>
                 <View style={{ height: 50 }}></View>
 
                 {/* end of completed tasks */}

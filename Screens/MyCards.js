@@ -36,20 +36,20 @@ const cancelRef = React.useRef(null);
       {/* end of appbar */}
 {/* start of carding words */}
       <View style={{width: 200, marginLeft:17}}>
-       <Text style={{ fontSize:32, fontWeight:'bold', color:dark }}>Your Cards</Text>
+       <Text style={{ fontSize:32, fontWeight:'bold', color:dark }}>My Kadify Cards</Text>
       </View>
       <View style={{width: 240, marginLeft:17}}>
-       <Text style={{ fontSize:20, fontWeight:'bold', color:"grey" }}>1 Physical card, 3 Virtual Card</Text>
+       <Text style={{ fontSize:20, fontWeight:'bold', color:"grey" }}>0 Telco card, 3 Virtual Card</Text>
       </View>
       {/* end of words */}
       {/* start of tags */}
 
       <View style={{width:330, height:80, flexDirection:"row", justifyContent:'center', alignItems:'center', backgroundColor: bg, marginLeft:17}}>
-        <TouchableOpacity style={{height:50, elevation:7, justifyContent:'center', alignItems:'center', borderRadius:10, width:150, marginRight:10, backgroundColor: primary}}>
-          <Text style={{ fontSize:18, color:light}}>Physical Cards</Text>
+        <TouchableOpacity onPress={()=>{navigation.navigate('createCard')}} style={{height:50, elevation:7, justifyContent:'center', alignItems:'center', borderRadius:10, width:150, marginRight:10, backgroundColor: primary}}>
+          <Text style={{ fontSize:18, color:light}}>Create a new Card</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{height:50, elevation:7, justifyContent:'center', alignItems:'center', borderRadius:10, width:150, marginRight:10, backgroundColor: "#A7AFF3"}}>
-          <Text style={{ fontSize:18, color:primary, fontWeight:'bold'}}>Virtual Cards</Text>
+          <Text style={{ fontSize:18, color:primary, fontWeight:'bold'}}>All Cards</Text>
         </TouchableOpacity>
        
       </View>
