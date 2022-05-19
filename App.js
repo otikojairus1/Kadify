@@ -41,6 +41,7 @@ import { primary } from './Palletes/Colours';
 import MyWeb from './Screens/webview'
 import ContactList from './Screens/PhoneContacts/phoneContacts';
 import CreateCards from './Screens/createCard';
+import Whatsappshare from './Components/whatsappshare';
 
 
 
@@ -73,7 +74,7 @@ export default function App() {
           drawerPosition={drawerPosition}
           renderNavigationView={navigationView}
         >
-          <Stack.Navigator initialRouteName="HomeWallet" >
+          <Stack.Navigator initialRouteName="Welcome3" >
             {/* stacks with drawer here */}
 
             <Stack.Screen name="MyCard" options={{ headerShown: false, headerTitleAlign: "center" }}>
@@ -108,6 +109,7 @@ export default function App() {
             <Stack.Screen name="mpesanotice" component={MpesaNotice} options={{ headerShown: false, headerTitleAlign: "center" }} />
             <Stack.Screen name="ContactList" component={ContactList} options={{ headerShown: false, headerTitleAlign: "center" }} />
             <Stack.Screen name="createCard" component={CreateCards} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Whatsappshare" component={Whatsappshare} options={{ headerShown: false, headerTitleAlign: "center" }} />
             
             <Stack.Screen name="MyWeb" component={MyWeb} options={{ headerShown: false, headerTitleAlign: "center" }} />
           </Stack.Navigator>

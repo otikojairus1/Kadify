@@ -22,7 +22,8 @@ const Login = ({navigation}) => {
 const [email, setEmail] = React.useState("");
 const [password, setPassword] = React.useState("");
 const [loading, setLoading] = React.useState(false);
-const toast = useToast();
+  const toast = useToast();
+ let biodata;
 
  const biometricsAuth = async () => {
      
@@ -36,7 +37,8 @@ const toast = useToast();
 
      if(result){
        AsyncStorage.getItem('biometricsID').then((value)=>{
-        console.log(value);
+         console.log(value);
+         
         navigation.navigate('HomeWallet');
        })
     

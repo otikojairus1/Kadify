@@ -5,19 +5,29 @@ import { bg, light, primary, dark, secondary } from '../Palletes/Colours'
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { AntDesign, Fontisto, MaterialCommunityIcons, MaterialIcons, Octicons, SimpleLineIcons } from '@expo/vector-icons';
 import LoadingScreen1 from '../Components/LoadingScreen1';
+import axios from 'axios'
+import { BASE_URI } from '../BASE_URI'
 
-
-export default function HomeWallet({ navigation, openDrawer }) {
-
+export default function HomeWallet({route, navigation,openDrawer }) {
+    let userdetailsobject = {}
+  //  const {emailid} = route.params;
     // component did mount here
 
     useEffect(() => {
-        setTimeout(() => {
-
-            setLoading(false);
-
-        }, 3000);
-    });
+        axios.post(BASE_URI + '/api/get/userdetails', {
+            email: "otikojairus@gmail.com"
+        })
+            .then((response) => {
+                userdetailsobject = response.data.user;
+                setLoading(false);
+                setuserbalance(userdetailsobject.balance);
+                setfirstname(userdetailsobject.fullName.split(" ")[0]);
+                setsecondname(userdetailsobject.fullName.split(" ")[1]);
+            }).catch((err) => {
+                console.log(err);
+                //setLoading(false);
+            })
+    },[]);
 
 
     // end of compoennt did mount
@@ -25,6 +35,9 @@ export default function HomeWallet({ navigation, openDrawer }) {
 
 
     const [loading, setLoading] = React.useState(true);
+    const [userbalance, setuserbalance] = React.useState(0);
+    const [secondname, setsecondname] = React.useState("");
+    const [firstname, setfirstname] = React.useState("");
 
     const renderChild = () => {
         <Text style={{}}>sdss</Text>
@@ -40,15 +53,15 @@ export default function HomeWallet({ navigation, openDrawer }) {
             <View style={{ paddingTop: 75, flex: 1, justifyContent: 'center', backgroundColor: bg }}>
                 <Appbar toggleDrawer={openDrawer} />
                 {/* start of hello dislplay */}
-                <View style={{ position: "absolute", top: 37, left: 90 }}><Text style={{ color:primary,fontSize: 20, fontWeight: 'bold', }}>AVAILABLE BALANCE</Text></View>
-                <View style={{ position: "absolute", top:60, left: 95 }}><Text style={{ fontSize: 30, color: "green" }}>KES. 2000.00</Text></View>
+                <View style={{ position: "absolute", top: 37, left: 90 }}><Text style={{ color: primary, fontSize: 20, fontWeight: 'bold', }}>AVAILABLE BALANCE</Text></View>
+                <View style={{ position: "absolute", top: 60, left: 100 }}><Text style={{ fontSize: 30, color: "green" }}>KES {userbalance}.00</Text></View>
                 <View style={{ height: 100, marginLeft: 17, marginRight: 2, flexDirection: 'row', backgroundColor: bg }}>
                     <View style={{ flex: 2, }}>
                         <Text style={{ fontSize: 25, fontWeight: 'bold', color: "grey" }}>Hello</Text>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ fontSize: 35, fontWeight: 'bold', }}>Janet</Text>
+                            <Text style={{ fontSize: 35, fontWeight: 'bold', }}>{firstname}</Text>
                             <View style={{ width: 10 }}></View>
-                            <Text style={{ fontSize: 35, fontWeight: 'bold', color: primary }}>Mbugua</Text>
+                            <Text style={{ fontSize: 35, fontWeight: 'bold', color: primary }}>{secondname }</Text>
 
                         </View>
 
@@ -183,7 +196,7 @@ export default function HomeWallet({ navigation, openDrawer }) {
 
                 {/* end of complete profile */}
                 {/* start of completed tasks */}
-                <TouchableOpacity onPress={()=>navigation.navigate('ContactList')}    style={{ height: 60, marginLeft: 17, marginRight: 17, flexDirection: 'row', padding: 10, borderRadius: 10, elevation: 7, backgroundColor: light, justifyContent: 'space-between', }}>
+                <TouchableOpacity onPress={() => navigation.navigate('ContactList')} style={{ height: 60, marginLeft: 17, marginRight: 17, flexDirection: 'row', padding: 10, borderRadius: 10, elevation: 7, backgroundColor: light, justifyContent: 'space-between', }}>
                     <Text style={{ fontWeight: 'bold', color: dark, fontSize: 20 }}>60% completed</Text>
                     <Text style={{ fontWeight: 'bold', color: "grey", fontSize: 20 }}>7 out of 10 completed</Text>
                 </TouchableOpacity>
