@@ -18,6 +18,8 @@ export default function MpesaDeposit() {
 
   // handle deposit
 
+  let phone = "254722753364";
+
 const deposit = () => {
   console.log(amount);
   setLoading(true);
@@ -28,6 +30,8 @@ const deposit = () => {
   })
   .then((res)=>{
     console.log(res.data.mpesaWalletTopup.ResponseCode);
+    let phone2 = "+" + phone; 
+    updateBalance(amount, phone2);
     setLoading(false);
     setSuccess(true);
   })
@@ -36,6 +40,13 @@ const deposit = () => {
   })
 
 }
+  
+  const updateBalance = (amount, phone) => {
+
+    axios.post(BASE_URI+'/api/update/balance', {"phone":phone, "amount":amount})
+    .then((res) => {console.log(res.data)});
+
+  }
 
   // end of deposit handling
 

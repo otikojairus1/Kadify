@@ -15,15 +15,30 @@ export default function TransferFunds({ navigation }) {
 
     const handlePayment = () => {
         setLoading(true);
-        axios.get(BASE_URI+'/api/dpo')
+        axios.post(BASE_URI+'/api/dpo', {
+            "amount":2000,
+            "firstname":"Jairus",
+            "lastname":"Otiko",
+            "email":"otikojairus@gmail.com"
+        })
             .then((res) => {
                 console.log(res.data.responseCode.TransToken);
+                updateBankbalance("otikojairus@gmail.com", 2000);
                 setLoading(false);
                 navigation.navigate('MyWeb',{token:res.data.responseCode.TransToken})
             })
             .catch((err) => {
                 console.log(err);
         })
+    }
+
+    const updateBankbalance = (email, amount) => {
+        axios.post(BASE_URI + '/api/update/balance/bank', {
+            "email":email,
+            "amount":amount
+        })
+            .then((res) => console.log(res.data))
+            .catch((err) => console.log(err));
     }
 
     if (loading) {
@@ -52,11 +67,11 @@ export default function TransferFunds({ navigation }) {
                 <View style={{ height: 100, marginTop: 10, flexDirection: 'row', marginLeft: 17, marginRight: 17, backgroundColor: bg }}>
                     <TouchableOpacity onPress={handlePayment} style={{ flex: 1, elevation: 7, justifyContent: 'center', alignItems: 'center', borderRadius: 10, marginRight: 4, backgroundColor: light }}>
                         <FontAwesome name="bank" size={30} color={primary} />
-                        <Text style={{ fontSize: 20, }}>Bank</Text>
+                        <Text style={{ fontSize: 20, }}>Bank Deposit</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('mpesa')} style={{ flex: 1, elevation: 7, justifyContent: 'center', alignItems: 'center', borderRadius: 10, marginRight: 4, backgroundColor: primary }}>
                         <FontAwesome5 name="money-bill-wave" size={30} color={light} />
-                        <Text style={{ fontSize: 20, color: light }}>Deposit</Text>
+                        <Text style={{ fontSize: 20, color: light }}>Mpesa Deposit</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ flex: 1, elevation: 7, justifyContent: 'center', alignItems: 'center', borderRadius: 10, marginRight: 4, backgroundColor: light }}>
                         <AntDesign name="qrcode" size={30} color={primary} />

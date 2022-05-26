@@ -18,6 +18,7 @@ export default function HomeWallet({route, navigation,openDrawer }) {
             email: "otikojairus@gmail.com"
         })
             .then((response) => {
+                console.log(response.data);
                 userdetailsobject = response.data.user;
                 setLoading(false);
                 setuserbalance(userdetailsobject.balance);
