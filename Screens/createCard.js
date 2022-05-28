@@ -4,12 +4,14 @@ import Appbar from '../Components/Appbar'
 import { FontAwesome, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign, SimpleLineIcons, Entypo } from '@expo/vector-icons';
 import { absabg, bg, coopbg, dark, equitybg, kcbbg, light, ncbabg, primary, secondary } from '../Palletes/Colours'
-import { Button, Actionsheet, AlertDialog, useDisclose, Box, Switch, Center, NativeBaseProvider, Icon, CheckIcon } from "native-base";
+import { Button, Actionsheet, AlertDialog, useToast, useDisclose, Box, Switch, Center, NativeBaseProvider, Icon, CheckIcon } from "native-base";
 import { Path } from "react-native-svg";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { Select } from "native-base";
 import PrimaryButton from '../Components/PrimaryButton';
 import LoadingScreen1 from '../Components/LoadingScreen1'
+import axios from 'axios'
+import {BASE_URI} from '../BASE_URI'
 
 export default function CreateCards({ navigation }) {
 
@@ -20,19 +22,76 @@ export default function CreateCards({ navigation }) {
     const [isOpen2, setIsOpen2] = React.useState(false);
 
     const onClose2 = () => setIsOpen2(false);
-
+    const toast = useToast();
     const cancelRef = React.useRef(null);
 
     const [cardname, setCardName] = React.useState("");
     const [transactions, setTransactions] = React.useState(0);
-
+    const [success, setSuccess] = React.useState(false);
     const [balance, setBalance] = React.useState(0);
     const [cardDesc, setCardDesc] = React.useState("");
     const [cardExp, setCardExp] = React.useState("");
     const [accountType, setAccountType] = React.useState("");
     const [merchantLock, setMerchantLock] = React.useState("");
     const [loading, setLoading] = React.useState(false);
+    const quoter1 = Math.floor(1000 + Math.random() * 9000);
+    const quoter2 = Math.floor(1000 + Math.random() * 9000);
+    const quoter3 = Math.floor(1000 + Math.random() * 9000);
+    const quoter4 = Math.floor(1000 + Math.random() * 9000);
+    const createCardHandler = () => {
 
+        // if (cardname == "" || cardDesc == "" || cardExp == "", accountType == "", merchantLock == "") {
+        //     toast.show({
+        //         render: () => {
+        //           return <Box bg="red.500" px="2" py="1" rounded="sm" mb={5}>
+        //                  wrong credentials
+        //                 </Box>;}
+        //       });
+        // } else {
+        setLoading(true);
+
+            axios.post(BASE_URI + '/api/add/card', {
+                "email":"otikojairus@gmail.com",
+                "description": cardDesc,
+                "expiry": cardExp,
+                "name": cardname,
+                "balance": balance,
+                "transactionsno": transactions,
+                "banktype": accountType,
+                "merchant_allowed": merchantLock,
+                "card_no": quoter1.toString()+quoter2.toString()+quoter3.toString()+quoter4.toString(),
+                "contactless_payment": "1",
+                "merchant_lock": "1",
+                "friends_withdrawal": "1",
+                "geo_lock": "1",
+                "deactivate_card": "1",
+                  
+            })
+                .then((res) => {
+                    if (res.data.responceCode != 200) {
+                        console.log(res.data) 
+                       
+                        toast.show({
+                                    render: () => {
+                                      return <Box bg="red.500" px="2" py="1" rounded="sm" mb={5}>
+                                             Provide complete information for your card. CARD CREATION DECLINED
+                                            </Box>;}
+                        });
+                        setLoading(false);
+                    } else {
+                        setLoading(false);
+                        setSuccess(true);
+                    }
+                  
+                 
+                })
+            .catch((err)=>console.log(err))
+            
+       // }
+
+   
+        
+    }
     let accountbg = primary;
 
     if (accountType == "coop") {
@@ -48,10 +107,7 @@ export default function CreateCards({ navigation }) {
         accountbg = absabg;
     }
     // end of dialod issues
-    const quoter1 = Math.floor(1000 + Math.random() * 9000);
-    const quoter2 = Math.floor(1000 + Math.random() * 9000);
-    const quoter3 = Math.floor(1000 + Math.random() * 9000);
-    const quoter4 = Math.floor(1000 + Math.random() * 9000);
+ 
 
     const {
         isOpen,
@@ -304,28 +360,36 @@ export default function CreateCards({ navigation }) {
                 {/* start of action sheet */}
 
                 <Actionsheet isOpen={isOpen} onClose={onClose} size="full">
-                    <Actionsheet.Content>
-                        <Box w="100%" h={60} px={4} justifyContent="center">
-                            <Text style={{ fontSize: 22, fontWeight: 'bold', color: primary }}>{accountType.toUpperCase()} Kadify Card Detailed services subscription</Text>
-                        </Box>
-                        <Actionsheet.Item onPress={() => console.log("clicked")} >
-                            <Text style={{ fontSize: 17, color: dark, }}> {accountType.toUpperCase()} virtual card will allow you access international money transer services like SWIFT and RGTS banking systems, you also have access to Internal Money Transfer services, these services will allow you to make payments to other equity bank users (not necessarily within the Kadify ecosystem.) You also have exclusive services like access to the equity bank current Forex Exchange infomation. Its also worth noting the availability of the following services. </Text>
-                            <Text style={{ fontWeight: "bold" }}>1. Airtime purchases (to all telcos within kenya)</Text>
-                            <Text style={{ fontWeight: "bold" }}>2. Access to all equity utility till numbers</Text>
-                            <Text style={{ fontWeight: "bold" }}>3. Access credit score of any customer, usefull for personal lending</Text>
-                            <Text style={{ fontWeight: "bold" }}>4. Access to all Equity bank billers.</Text>
-                            <Text style={{ fontWeight: "bold" }}>4. Access to current Forex exchange data.</Text>
-                            <Text style={{ fontWeight: "bold" }}>5. KYC information</Text>
-                            <Text style={{ fontWeight: "bold" }}>6. SWIFT banking services</Text>
-                            <Text style={{ fontWeight: "bold" }}>7.RGTS banking services</Text>
-                            <Text style={{ fontWeight: "bold" }}>8.Remmitance pesaLink banking services</Text>
-                            <Text style={{ fontWeight: "bold" }}>9. Online Kadify merchant payment services</Text>
-                        </Actionsheet.Item>
-                        <View style={{ marginLeft: -30, }}>
-                            <PrimaryButton title={"SUBSCRIBE"} />
-                        </View>
+                    {success ? <Actionsheet.Content>
+                        
+                        <Image source={require('../assets/card_added_success.gif')} style={{ height: 120, width: 120, borderRadius: 20 }} />
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color:"green" }}>Card creation and verification success!</Text>
+                       
+                        <Text style={{ fontSize: 18, }}>Your Kadify virtual card was verified and created successfully, kindly check your Email for security details regarding the card. That information is critical when using the card to third part clients like Ecommerce shops</Text>
+                        <PrimaryButton onPress={()=>{navigation.goBack()}} title={"My Active Cards"} />
+                    </Actionsheet.Content> :
+                        <Actionsheet.Content>
+                            <Box w="100%" h={60} px={4} justifyContent="center">
+                                <Text style={{ fontSize: 22, fontWeight: 'bold', color: primary }}>{accountType.toUpperCase()} Kadify Card Detailed services subscription</Text>
+                            </Box>
+                            <Actionsheet.Item onPress={() => console.log("clicked")} >
+                                <Text style={{ fontSize: 17, color: dark, }}> {accountType.toUpperCase()} virtual card will allow you access international money transer services like SWIFT and RGTS banking systems, you also have access to Internal Money Transfer services, these services will allow you to make payments to other equity bank users (not necessarily within the Kadify ecosystem.) You also have exclusive services like access to the equity bank current Forex Exchange infomation. Its also worth noting the availability of the following services. </Text>
+                                <Text style={{ fontWeight: "bold" }}>1. Airtime purchases (to all telcos within kenya)</Text>
+                                <Text style={{ fontWeight: "bold" }}>2. Access to all equity utility till numbers</Text>
+                                <Text style={{ fontWeight: "bold" }}>3. Access credit score of any customer, usefull for personal lending</Text>
+                                <Text style={{ fontWeight: "bold" }}>4. Access to all Equity bank billers.</Text>
+                                <Text style={{ fontWeight: "bold" }}>4. Access to current Forex exchange data.</Text>
+                                <Text style={{ fontWeight: "bold" }}>5. KYC information</Text>
+                                <Text style={{ fontWeight: "bold" }}>6. SWIFT banking services</Text>
+                                <Text style={{ fontWeight: "bold" }}>7.RGTS banking services</Text>
+                                <Text style={{ fontWeight: "bold" }}>8.Remmitance pesaLink banking services</Text>
+                                <Text style={{ fontWeight: "bold" }}>9. Online Kadify merchant payment services</Text>
+                            </Actionsheet.Item>
+                            <View style={{ marginLeft: -30, }}>
+                                <PrimaryButton onPress={createCardHandler} title={"SUBSCRIBE"} />
+                            </View>
 
-                    </Actionsheet.Content>
+                        </Actionsheet.Content>}
                 </Actionsheet>
 
 
@@ -334,24 +398,25 @@ export default function CreateCards({ navigation }) {
                 {/* start of alert dialog */}
 
                 <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpen2} onClose={onClose2}>
-                    <AlertDialog.Content>
-                        <AlertDialog.CloseButton />
-                        <AlertDialog.Header>Confirm Deleting Card</AlertDialog.Header>
-                        <AlertDialog.Body>
-                            This will remove all data relating to this card including automated payment disbursement to subscribed merchants. This action cannot be
-                            reversed. Deleted data can not be recovered.
-                        </AlertDialog.Body>
-                        <AlertDialog.Footer>
-                            <Button.Group space={2}>
-                                <Button variant="unstyled" colorScheme="coolGray" onPress={onClose2} ref={cancelRef}>
-                                    Cancel
-                                </Button>
-                                <Button colorScheme="danger" onPress={onClose2}>
-                                    Delete
-                                </Button>
-                            </Button.Group>
-                        </AlertDialog.Footer>
-                    </AlertDialog.Content>
+                  
+                        <AlertDialog.Content>
+                            <AlertDialog.CloseButton />
+                            <AlertDialog.Header>Confirm Deleting Card</AlertDialog.Header>
+                            <AlertDialog.Body>
+                                This will remove all data relating to this card including automated payment disbursement to subscribed merchants. This action cannot be
+                                reversed. Deleted data can not be recovered.
+                            </AlertDialog.Body>
+                            <AlertDialog.Footer>
+                                <Button.Group space={2}>
+                                    <Button variant="unstyled" colorScheme="coolGray" onPress={onClose2} ref={cancelRef}>
+                                        Cancel
+                                    </Button>
+                                    <Button colorScheme="danger" onPress={onClose2}>
+                                        Delete
+                                    </Button>
+                                </Button.Group>
+                            </AlertDialog.Footer>
+                        </AlertDialog.Content>
                 </AlertDialog>
 
 

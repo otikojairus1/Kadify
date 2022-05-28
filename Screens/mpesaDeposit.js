@@ -109,7 +109,7 @@ const deposit = () => {
         <View style={{height:100, width:"100%"}}>
           <Appbar />
           <View style={{position:"absolute", left:145}}>
-          <Text style={{ fontSize:32, fontWeight:"bold", color:primary}}>Kadify</Text>
+          <Text style={{ fontSize:32, fontWeight:"bold", color:primary}}>Pesar</Text>
           </View>
         </View>
         <View>
