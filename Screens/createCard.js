@@ -106,7 +106,7 @@ export default function CreateCards({ navigation }) {
     } else if (accountType == 'absa') {
         accountbg = absabg;
     }
-    // end of dialod issues
+    // end of dialod issues kygig
  
 
     const {
