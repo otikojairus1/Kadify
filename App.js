@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // start of screen importation
 import TransferSuccess from './Screens/TransferSuccess';
+import CardProcesses from './Screens/card_processes'
 import Welcome from './Screens/Welcome';
 import Welcome2 from './Screens/Welcome2';
 import Welcome3 from './Screens/Welcome3';
@@ -42,6 +43,7 @@ import MyWeb from './Screens/webview'
 import ContactList from './Screens/PhoneContacts/phoneContacts';
 import CreateCards from './Screens/createCard';
 import Whatsappshare from './Components/whatsappshare';
+import EquityBillers from './Screens/EquityBillers';
 
 
 
@@ -74,7 +76,7 @@ export default function App() {
           drawerPosition={drawerPosition}
           renderNavigationView={navigationView}
         >
-          <Stack.Navigator initialRouteName="Welcome3" >
+          <Stack.Navigator initialRouteName="Welcome3">
             {/* stacks with drawer here */}
 
             <Stack.Screen name="MyCard" options={{ headerShown: false, headerTitleAlign: "center" }}>
@@ -86,6 +88,9 @@ export default function App() {
 
             {/* end of stacks with drawers */}
             <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="CardProcesses" component={CardProcesses} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="Equity Billers" component={EquityBillers} options={{ headerShown: false, headerTitleAlign: "center" }} />
+
             <Stack.Screen name="sign up" component={SignUp} options={{ headerShown: false, headerTitleAlign: "center" }} />
             <Stack.Screen name="Welcome2" component={Welcome2} options={{ headerShown: false, headerTitleAlign: "center" }} />
             <Stack.Screen name="Welcome3" component={Welcome3} options={{ headerShown: false, headerTitleAlign: "center" }} />
@@ -110,6 +115,7 @@ export default function App() {
             <Stack.Screen name="ContactList" component={ContactList} options={{ headerShown: false, headerTitleAlign: "center" }} />
             <Stack.Screen name="createCard" component={CreateCards} options={{ headerShown: false, headerTitleAlign: "center" }} />
             <Stack.Screen name="Whatsappshare" component={Whatsappshare} options={{ headerShown: false, headerTitleAlign: "center" }} />
+            <Stack.Screen name="sendmoney" component={SendMoney} options={{ headerShown: false, headerTitleAlign: "center" }} />
             
             <Stack.Screen name="MyWeb" component={MyWeb} options={{ headerShown: false, headerTitleAlign: "center" }} />
           </Stack.Navigator>

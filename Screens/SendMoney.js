@@ -1,12 +1,70 @@
-import { View, Text ,Image, TouchableOpacity} from 'react-native'
+import { View, Text ,Image, TextInput, TouchableOpacity} from 'react-native'
 import React from 'react'
 import Appbar from '../Components/Appbar'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { bg, dark, secondary, light, primary } from '../Palletes/Colours'
-import { CheckIcon, Select } from "native-base";
+import { CheckIcon, Select} from "native-base";
+import LoadingScreen1 from '../Components/LoadingScreen1';
+import axios from 'axios';
+import { BASE_URI } from '../BASE_URI';
+import SuccessTransfer from '../Components/SuccessTransfer';
 
-export default function SendMoney() {
+export default function SendMoney({navigation, route}) {
     let [service, setService] = React.useState("");
+    let [amount, setAmount] = React.useState();
+    let [loading, setLoadingg] = React.useState(false);
+
+    let [card, setCard] = React.useState();
+    let [success, setSuccess] = React.useState(false);
+    let [error, setError] = React.useState(false);
+    let [errorData, setErrorData] = React.useState('');
+
+
+
+    let {cardname, cardnumber} = route.params;
+    let [sendercard, setsenderCard] = React.useState();
+  
+
+    //let c = parseInt(cardname);
+    const transfer = () => {
+        setLoadingg(true);
+        setsenderCard(cardname);
+        axios.post(BASE_URI + '/api/send/payment/card', {
+            "receiver_card":card,
+            "sender_card": cardnumber,
+            "amount":amount,
+            "email":"otikojairus@gmail.com",
+            "merchant_type":service
+        }).then((res) => {
+            console.log(res.data);
+            setLoadingg(false);
+            if (res.data.success) {
+                setSuccess(true);
+            } else if (res.data.success == false) {
+                setError(true);
+                setErrorData(res.data.error);
+            }
+           
+        })
+        .catch((err)=> console.log(err))
+        console.log(service, cardnumber, amount, "otikojairus@gmail.com", cardnumber)
+        
+    }
+
+    if (loading) {
+        return <LoadingScreen1 />;
+    } else if (success) {
+        return <SuccessTransfer />;
+    } else if (error) {
+        return (
+            <View style={{flex:1, justifyContent: 'center',alignItems:'center'}}>
+            <Image source={require('../assets/errortransact.gif')} style={{ height:300, width:300, borderRadius:130}}/>
+                <Text>{ errorData}</Text>
+            </View>
+        );
+    }
+    
+
   return (
     <View style={{flex:1, justifyContent:'center', backgroundColor:bg, alignItems:'flex-start'}}>
       {/* start of appbar */}
@@ -25,15 +83,17 @@ export default function SendMoney() {
         {/* emd of sending title */}
 
         {/* start of send digits */}
-        <View style={{ width: 320,  height: 180,borderRadius:10, elevation:7, marginLeft:17, marginTop:10, alignItems:'center', justifyContent:'center', backgroundColor:light}}>
+        <View style={{ width: 320,  height: 250,borderRadius:10, elevation:7, marginLeft:17, marginTop:10, alignItems:'center', justifyContent:'center', backgroundColor:light}}>
             <View style={{flex:1, flexDirection:"row",justifyContent:'center',alignItems:'center', backgroundColor:light}}>
                 <TouchableOpacity style={{height: 35, width:35, justifyContent:'center',alignItems:'center', borderRadius:7, marginRight:17, backgroundColor:secondary,}}>
                 <FontAwesome5 name="minus" size={20} color={light} />
                 </TouchableOpacity>
-                <Text style={{ fontSize:25, color:primary, fontWeight: 'bold',}}>KSH 35,000</Text>
+                  <Text style={{ fontSize: 25, color: primary, fontWeight: 'bold', }}>KSH {amount }</Text>
+
                 <TouchableOpacity style={{height: 35, justifyContent:'center', alignItems:'center',width:35, borderRadius:7, marginLeft:10, backgroundColor:secondary,}}>
                 <FontAwesome5 name="plus" size={20} color={light}/>
                 </TouchableOpacity>
+                  
 
             </View>
             <View style={{flex:1, justifyContent:'center', alignItems:'center',}}>
@@ -51,10 +111,23 @@ export default function SendMoney() {
                 </TouchableOpacity>
                 </View>
 
-            </View>
+              </View>
+              <View style={{width:'40%', marginLeft:-50}}>
+              <TextInput value={amount} onChangeText={(text)=>setAmount(text)} placeholder="Enter Amount "  style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}></TextInput>
+              <TextInput value={card} onChangeText={(text)=>setCard(text)} placeholder="Enter Receiver card number "  style={{width:320, height: 50, paddingLeft: 20, paddingRight: 20,borderRadius: 10, marginTop:16, backgroundColor: '#e8e9f1',borderWidth:1, borderColor: '#e8e9f1'}}></TextInput>
+              
+              </View>
+          
         </View>
 
-        {/* end of start diigits */}
+          {/* end of start diigits */}
+          <Text>MY CARD DETAILS:</Text>
+          <Text>{   cardname}</Text>
+
+          <Text>{ cardnumber}</Text>
+          
+
+          
         {/* start of speed dial */}
 
         <View style={{height:150, width:320, backgroundColor: light, borderRadius:10, elevation:7, marginTop:20, marginLeft:17,}}>
@@ -103,7 +176,7 @@ export default function SendMoney() {
         {/* end of select */}
         {/* start of button */}
         <View style={{height: 80, width:320, alignItems:'center', flexDirection:"row", justifyContent:'center', marginTop:20, marginLeft:17,}}>
-            <TouchableOpacity style={{width: 150,borderRadius:10, justifyContent:'center', alignItems:'center',height:60,elevation:10, marginRight:10, backgroundColor:primary}}>
+            <TouchableOpacity onPress={transfer} style={{width: 150,borderRadius:10, justifyContent:'center', alignItems:'center',height:60,elevation:10, marginRight:10, backgroundColor:primary}}>
                 <Text style={{ fontSize:23, fontWeight: 'bold',color:light}}>Transfer</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{width: 150,borderRadius:10, justifyContent:'center', alignItems:'center',height:60,elevation:10, marginRight:0, backgroundColor:light}}>

@@ -119,7 +119,7 @@ const cancelRef = React.useRef(null);
       <ScrollView horizontal={true} style={{ backgroundColor: bg, }}>
         
         {list.map((card) => {
-          return (<TouchableOpacity onPress={onOpen} style={{ height: 200, elevation: 7, width: 330, marginLeft: 10, backgroundColor:  getbg(card) , borderRadius:10}}>
+          return (<TouchableOpacity onPress={()=>navigation.navigate('CardProcesses',{'cardname':card.name, 'cardnumber':card.card_no})} style={{ height: 200, elevation: 7, width: 330, marginLeft: 10, backgroundColor:  getbg(card) , borderRadius:10}}>
             <View style={{width:200, marginTop:4, flexDirection:'row', marginLeft:20, height:50}}>
               <Text style={{ fontSize:34, fontWeight:'bold', color:light}}>Kadify</Text>
               <Text style={{ fontSize:34, fontWeight:'bold', color:secondary}}>Pay</Text>
@@ -306,9 +306,9 @@ const cancelRef = React.useRef(null);
           <Actionsheet.Item onPress={()=>Linking.openURL(`whatsapp://send?text=${text}`)}  startIcon={<MaterialCommunityIcons name="share-variant" size={24} color={primary} />}>
             <Text style={{ fontSize:20, color:dark, fontWeight: 'bold',}}>Share Card</Text>
           </Actionsheet.Item>
-          <Actionsheet.Item startIcon={<Entypo name="users" size={24} color={primary} />}>
+          <Actionsheet.Item onPress={()=>navigation.navigate('CardProcesses')} startIcon={<Entypo name="users" size={24} color={primary}  />}>
             
-            <Text style={{ fontSize:20, color:dark, fontWeight: 'bold',}}>Modify Beneficiaries</Text>
+            <Text style={{ fontSize:20, color:dark, fontWeight: 'bold',}}>Use Card</Text>
           </Actionsheet.Item>
 
           <Actionsheet.Item startIcon={<FontAwesome name="credit-card" size={24} color={primary} />}>

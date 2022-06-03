@@ -196,7 +196,7 @@ export default function TransferFunds({ navigation }) {
                         </TouchableOpacity>
                     </View>
 
-                    {/* start of list */}
+                    {/* start of list */} 
                     <ScrollView>
                         <View style={{ flex: 1, marginBottom: 10, flexDirection: 'row' }} >
                             <TouchableOpacity style={{ height: 45, width: 65, borderRadius: 65, marginLeft: 15, justifyContent: 'center', marginTop: 10, backgroundColor: primary }}>
